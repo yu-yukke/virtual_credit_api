@@ -1,16 +1,63 @@
-version: 2
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.2
+  node: circleci/node@2
+
+# setup
+commands:
+  setup:
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: 'yarn.lock'
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.5-node-browsers
+    steps:
+      - setup
+  spec:
+    docker:
+      - image: circleci/ruby:2.7.5-node-browsers
+      - image: circleci/mysql:5.7
+        name: db
+        environment:
+          MYSQL_USER: 'test'
+          MYSQL_ROOT_PASSWORD: 'password'
+          MYSQL_PASSWORD: 'password'
+          MYSQL_DATABASE: 'virtual_credit_api_test'
+          MYSQL_HOST: 'db'
+    environment:
+      BUNDLE_JOBS: '4'
+      BUNDLE_RETRY: '3'
+      MYSQL_HOST: 127.0.0.1
+      MYSQL_USER: 'test'
+      MYSQL_PASSWORD: ''
+      RAILS_ENV: test
+    steps:
+      - setup
+      - run:
+          name: hoge
+          command: echo 'hello world'
+      # - run:
+      #     name: rails db:migrate
+      #     command: bundle exec rails db:migrate
+      # - run:
+      #     name: Database setup
+      #     command: bundle exec rails db:schema:load --trace
+      # - run:
+      #     name: Rspec
+      #     command: bundle exec rspec
 
 workflows:
   version: 2
-  workflows:
+  test_and_deploy:
     jobs:
-      - test
-
-jobs:
-  test:
-    docker:
-      - image: circleci/ruby:2.7.5
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run: echo "hello world"
+      - build
+      - spec:
+          requires:
+            - build
