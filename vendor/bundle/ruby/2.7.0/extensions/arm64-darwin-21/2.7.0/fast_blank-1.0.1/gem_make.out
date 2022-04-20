@@ -1,0 +1,15 @@
+current directory: /Users/yukke/Projects/virtual_credit_api/vendor/bundle/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+/Users/yukke/.rbenv/versions/2.7.5/bin/ruby -I /Users/yukke/.rbenv/versions/2.7.5/lib/ruby/2.7.0 -r ./siteconf20220420-59706-14fbi7v.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yukke/Projects/virtual_credit_api/vendor/bundle/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+make "DESTDIR=" clean
+
+current directory: /Users/yukke/Projects/virtual_credit_api/vendor/bundle/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+make "DESTDIR="
+compiling fast_blank.c
+linking shared-object fast_blank.bundle
+
+current directory: /Users/yukke/Projects/virtual_credit_api/vendor/bundle/ruby/2.7.0/gems/fast_blank-1.0.1/ext/fast_blank
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 fast_blank.bundle ./.gem.20220420-59706-1ihs8ra

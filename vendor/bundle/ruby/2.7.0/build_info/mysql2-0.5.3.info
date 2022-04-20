@@ -1,0 +1,2 @@
+--with-ldflags=-L/opt/homebrew/lib
+--with-opt-dir=/opt/homebrew/opt/openssl
