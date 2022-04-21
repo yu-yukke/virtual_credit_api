@@ -19,7 +19,7 @@
 #  index_creator_mappings_on_user_id     (user_id)
 #
 class CreatorMapping < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :user
   belongs_to :product

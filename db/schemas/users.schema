@@ -29,13 +29,11 @@ create_table 'users', id: :bigint, force: :cascade, charset: 'utf8mb4', collatio
   # =========================================
   # 画像
   # =========================================
-  # メインイメージ
-  t.string  'main_image',         null: true,
-                                  limit: 191
+  # メインイメージURL
+  t.string  'main_image_url',     null: true
 
-  # サムネイルイメージ
-  t.string  'thumb_image',        null: true,
-                                  limit: 191
+  # サムネイルイメージURL
+  t.string  'thumb_image_url',    null: true
 
   # =========================================
   # 論理削除

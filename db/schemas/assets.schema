@@ -26,17 +26,13 @@ create_table 'assets', id: :bigint, force: :cascade, charset: 'utf8mb4', collati
                                     limit: 191
 
   # URL
-  t.string  'url',                  null: false,
-                                    limit: 191
-
-  # 画像
-  t.string  'image',                null: false,
-                                    limit: 191
+  t.string  'url',                  null: false
 
   # =========================================
   # 画像
   # =========================================
-  # なし
+  # 画像URL
+  t.string  'image_url',            null: false
 
   # =========================================
   # 論理削除

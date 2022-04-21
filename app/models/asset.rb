@@ -7,8 +7,8 @@
 #  id         :bigint           not null, primary key
 #  user_id    :bigint           not null
 #  name       :string(191)      not null
-#  url        :string(191)      not null
-#  image      :string(191)      not null
+#  url        :string(255)      not null
+#  image_url  :string(255)      not null
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
@@ -19,7 +19,7 @@
 #  index_assets_on_user_id     (user_id)
 #
 class Asset < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :user
 

@@ -21,7 +21,8 @@ create_table 'inquiries', id: :bigint, force: :cascade, charset: 'utf8mb4', coll
   # カラム
   # =========================================
   # 問い合わせ種別
-  t.integer  'type',                null: false
+  t.integer  'inquiry_type',        null: false,
+                                    default: 0
 
   # 問い合わせ内容
   t.text  'text',                   null: false

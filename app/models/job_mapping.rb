@@ -18,7 +18,7 @@
 #  index_job_mappings_on_user_id     (user_id)
 #
 class JobMapping < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :user
   belongs_to :job
