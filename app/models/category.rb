@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: categories
@@ -14,5 +16,4 @@
 #  index_categories_on_deleted_at  (deleted_at)
 #
 class Category < ApplicationRecord
-
 end

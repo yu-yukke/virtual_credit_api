@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: release_notes
@@ -16,5 +18,4 @@
 #  index_release_notes_on_deleted_at  (deleted_at)
 #
 class ReleaseNote < ApplicationRecord
-
 end

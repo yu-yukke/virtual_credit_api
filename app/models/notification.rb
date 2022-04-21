@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -14,5 +16,4 @@
 #  index_notifications_on_deleted_at  (deleted_at)
 #
 class Notification < ApplicationRecord
-
 end

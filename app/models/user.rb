@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -16,5 +18,4 @@
 #  index_users_on_deleted_at  (deleted_at)
 #
 class User < ApplicationRecord
-
 end

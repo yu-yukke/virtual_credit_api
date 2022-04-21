@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: creator_mappings
@@ -17,5 +19,4 @@
 #  index_creator_mappings_on_user_id     (user_id)
 #
 class CreatorMapping < ApplicationRecord
-
 end

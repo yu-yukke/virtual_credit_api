@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: jobs
@@ -14,5 +16,4 @@
 #  index_jobs_on_deleted_at  (deleted_at)
 #
 class Job < ApplicationRecord
-
 end

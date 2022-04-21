@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: admin_users
@@ -18,5 +20,4 @@
 #  index_admin_users_on_password_digest     (password_digest) UNIQUE
 #
 class AdminUser < ApplicationRecord
-
 end

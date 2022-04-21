@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: socials
@@ -18,5 +20,4 @@
 #  index_socials_on_user_id     (user_id) UNIQUE
 #
 class Social < ApplicationRecord
-
 end

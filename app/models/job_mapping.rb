@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: job_mappings
@@ -16,5 +18,4 @@
 #  index_job_mappings_on_user_id     (user_id)
 #
 class JobMapping < ApplicationRecord
-
 end
