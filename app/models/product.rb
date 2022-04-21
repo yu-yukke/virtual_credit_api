@@ -18,7 +18,7 @@
 #  index_products_on_deleted_at   (deleted_at)
 #
 class Product < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :category
 

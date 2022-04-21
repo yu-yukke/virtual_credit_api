@@ -20,5 +20,5 @@
 #  index_admin_users_on_password_digest     (password_digest) UNIQUE
 #
 class AdminUser < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 end

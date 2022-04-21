@@ -7,8 +7,8 @@
 #  id         :bigint           not null, primary key
 #  product_id :bigint           not null
 #  sequence   :integer          not null
-#  type       :integer          not null
-#  image_url  :string(191)
+#  file_type  :integer          default("image"), not null
+#  image_url  :string(255)
 #  video_id   :string(191)
 #  deleted_at :datetime
 #  created_at :datetime
@@ -20,7 +20,12 @@
 #  index_image_files_on_product_id  (product_id)
 #
 class ImageFile < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
+
+  enum file_type: {
+    image: 0,
+    video: 10
+  }.freeze
 
   belongs_to :product
 end

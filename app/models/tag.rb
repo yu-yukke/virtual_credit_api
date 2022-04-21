@@ -17,7 +17,7 @@
 #  index_tags_on_user_id     (user_id)
 #
 class Tag < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :user
 

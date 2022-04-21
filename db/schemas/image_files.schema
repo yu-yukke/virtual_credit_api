@@ -25,11 +25,8 @@ create_table 'image_files', id: :bigint, force: :cascade, charset: 'utf8mb4', co
   t.integer  'sequence',            null: false
 
   # 形式
-  t.integer  'type',                null: false
-
-  # 画像URL
-  t.string  'image_url',            null: true,
-                                    limit: 191
+  t.integer  'file_type',           null: false,
+                                    default: 0
 
   # ビデオID
   t.string  'video_id',             null: true,
@@ -38,7 +35,8 @@ create_table 'image_files', id: :bigint, force: :cascade, charset: 'utf8mb4', co
   # =========================================
   # 画像
   # =========================================
-  # なし
+  # 画像URL
+  t.string  'image_url',            null: true
 
   # =========================================
   # 論理削除

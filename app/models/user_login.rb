@@ -22,7 +22,7 @@
 #  index_user_logins_on_user_id             (user_id) UNIQUE
 #
 class UserLogin < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :user
 end

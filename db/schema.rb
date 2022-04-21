@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "assets", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", limit: 191, null: false
-    t.string "url", limit: 191, null: false
-    t.string "image", limit: 191, null: false
+    t.string "url", null: false
+    t.string "image_url", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "image_files", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.integer "sequence", null: false
-    t.integer "type", null: false
-    t.string "image_url", limit: 191
+    t.integer "file_type", default: 0, null: false
     t.string "video_id", limit: 191
+    t.string "image_url"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "inquiries", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "type", null: false
+    t.integer "inquiry_type", default: 0, null: false
     t.text "text", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -218,8 +218,8 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", limit: 191, null: false
     t.string "description", limit: 191
-    t.string "main_image", limit: 191
-    t.string "thumb_image", limit: 191
+    t.string "main_image_url"
+    t.string "thumb_image_url"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

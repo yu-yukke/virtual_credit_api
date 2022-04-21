@@ -18,7 +18,7 @@
 #  index_tag_mappings_on_tag_id      (tag_id)
 #
 class TagMapping < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :product
   belongs_to :tag

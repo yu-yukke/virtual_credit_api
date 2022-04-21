@@ -4,27 +4,30 @@
 #
 # Table name: users
 #
-#  id          :bigint           not null, primary key
-#  name        :string(191)      not null
-#  description :string(191)
-#  main_image  :string(191)
-#  thumb_image :string(191)
-#  deleted_at  :datetime
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id              :bigint           not null, primary key
+#  name            :string(191)      not null
+#  description     :string(191)
+#  main_image_url  :string(255)
+#  thumb_image_url :string(255)
+#  deleted_at      :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
 #
 # Indexes
 #
 #  index_users_on_deleted_at  (deleted_at)
 #
 class User < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   has_one :user_login, dependent: :destroy
   has_one :social, dependent: :destroy
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_products, through: :favorites, source: :product
+
+  has_many :job_mappings, dependent: :destroy
+  has_many :jobs, through: :job_mappings
 
   has_many :creator_mappings, dependent: :destroy
   has_many :products, through: :creator_mappings

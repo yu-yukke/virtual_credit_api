@@ -18,7 +18,7 @@
 #  index_favorites_on_user_id     (user_id)
 #
 class Favorite < ApplicationRecord
-  act_as_paranoid
+  acts_as_paranoid
 
   belongs_to :user
   belongs_to :product
