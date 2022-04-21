@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: products
@@ -16,5 +18,4 @@
 #  index_products_on_deleted_at   (deleted_at)
 #
 class Product < ApplicationRecord
-
 end

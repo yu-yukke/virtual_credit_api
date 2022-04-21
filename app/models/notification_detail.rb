@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notification_details
@@ -16,5 +18,4 @@
 #  notification_details_on_notification_id  (notification_id)
 #
 class NotificationDetail < ApplicationRecord
-
 end

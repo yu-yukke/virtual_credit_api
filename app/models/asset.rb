@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assets
@@ -17,5 +19,4 @@
 #  index_assets_on_user_id     (user_id)
 #
 class Asset < ApplicationRecord
-
 end

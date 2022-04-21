@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: user_logins
@@ -20,5 +22,4 @@
 #  index_user_logins_on_user_id             (user_id) UNIQUE
 #
 class UserLogin < ApplicationRecord
-
 end

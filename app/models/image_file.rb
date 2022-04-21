@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: image_files
@@ -18,5 +20,4 @@
 #  index_image_files_on_product_id  (product_id)
 #
 class ImageFile < ApplicationRecord
-
 end

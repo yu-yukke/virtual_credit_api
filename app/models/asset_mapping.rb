@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: asset_mappings
@@ -16,5 +18,4 @@
 #  index_asset_mappings_on_product_id  (product_id)
 #
 class AssetMapping < ApplicationRecord
-
 end

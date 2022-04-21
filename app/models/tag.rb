@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tags
@@ -15,5 +17,4 @@
 #  index_tags_on_user_id     (user_id)
 #
 class Tag < ApplicationRecord
-
 end

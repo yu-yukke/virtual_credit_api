@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tag_mappings
@@ -16,5 +18,4 @@
 #  index_tag_mappings_on_user_id     (user_id)
 #
 class TagMapping < ApplicationRecord
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: favorites
@@ -16,5 +18,4 @@
 #  index_favorites_on_user_id     (user_id)
 #
 class Favorite < ApplicationRecord
-
 end

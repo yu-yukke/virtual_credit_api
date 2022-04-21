@@ -52,6 +52,14 @@ jobs:
       # - run:
       #     name: Run Rspec
       #     command: bundle exec rspec
+  rubocop:
+    docker:
+      - image: circleci/ruby:2.7.5-node-browsers
+    steps:
+      - setup
+      - run:
+          name: rubocop
+          command: bundle exec rubocop
 
 workflows:
   version: 2
@@ -59,5 +67,8 @@ workflows:
     jobs:
       - build
       - spec:
+          requires:
+            - build
+      - rubocop:
           requires:
             - build
