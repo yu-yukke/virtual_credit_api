@@ -1,0 +1,48 @@
+index_key  = 'index_creator_mappings_on_'
+
+create_table 'creator_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+  # =========================================
+  # 親
+  # =========================================
+  # なし
+
+  # =========================================
+  # PRIMARY KEY
+  # =========================================
+  # なし
+
+  # =========================================
+  # リレーション
+  # =========================================
+  # ユーザーID
+  t.bigint  'user_id',              null: false
+  t.index   'user_id',              name: "#{index_key}user_id"
+
+  # 作品ID
+  t.bigint  'product_id',           null: false
+  t.index   'product_id',           name: "#{index_key}product_id"
+
+  # =========================================
+  # カラム
+  # =========================================
+  # 登録者真偽
+  t.boolean  'is_author',           null: false,
+                                    default: false
+
+  # =========================================
+  # 画像
+  # =========================================
+  # なし
+
+  # =========================================
+  # 論理削除
+  # =========================================
+  t.datetime 'deleted_at'
+  t.index    'deleted_at',          name: "#{index_key}deleted_at"
+
+  # =========================================
+  # 作成・更新日時
+  # =========================================
+  t.datetime 'created_at'
+  t.datetime 'updated_at'
+end

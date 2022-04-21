@@ -1,0 +1,58 @@
+index_key  = 'index_socials_on_'
+
+create_table 'socials', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+  # =========================================
+  # 親
+  # =========================================
+  # ユーザーID
+  t.bigint  'user_id',              null: false
+  t.index   'user_id',              name: "#{index_key}user_id",
+                                    unique: true
+
+  # =========================================
+  # PRIMARY KEY
+  # =========================================
+  # なし
+
+  # =========================================
+  # リレーション
+  # =========================================
+  # なし
+
+  # =========================================
+  # カラム
+  # =========================================
+  # twitter
+  # TODO: auth次第でnull: falseでいいかも
+  t.string  'twitter_id',           null: true,
+                                    limit: 191
+
+  # youtube
+  t.string  'youtube_id',           null: true,
+                                    limit: 191
+
+  # instagram
+  t.string  'instagram_id',         null: true,
+                                    limit: 191
+
+  # facebook
+  t.string  'facebook_id',          null: true,
+                                    limit: 191
+
+  # =========================================
+  # 画像
+  # =========================================
+  # なし
+
+  # =========================================
+  # 論理削除
+  # =========================================
+  t.datetime 'deleted_at'
+  t.index    'deleted_at',          name: "#{index_key}deleted_at"
+
+  # =========================================
+  # 作成・更新日時
+  # =========================================
+  t.datetime 'created_at'
+  t.datetime 'updated_at'
+end

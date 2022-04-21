@@ -1,1 +1,40 @@
+# ============= ユーザーサイト =============
+# ユーザー
 require 'users.schema'
+require 'user_logins.schema'
+require 'socials.schema'
+
+# ジョブ
+require 'jobs.schema'
+require 'job_mappings.schema'
+
+# 作品
+require 'products.schema'
+require 'image_files.schema'
+require 'favorites.schema'
+require 'creator_mappings.schema'
+
+# アセット
+require 'assets.schema'
+require 'asset_mappings.schema'
+
+# タグ
+require 'tags.schema'
+require 'tag_mappings.schema'
+
+# カテゴリー
+require 'categories.schema'
+
+# 問い合わせ
+require 'inquiries.schema'
+
+# ============= 管理サイト =============
+# 管理者
+require 'admin_users.schema'
+
+# お知らせ
+require 'notifications.schema'
+require 'notification_details.schema'
+
+# リリースノート
+require 'release_notes.schema'

@@ -1,0 +1,54 @@
+index_key  = 'index_admin_users_on_'
+
+create_table 'admin_users', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+  # =========================================
+  # 親
+  # =========================================
+  # なし
+
+  # =========================================
+  # PRIMARY KEY
+  # =========================================
+  # なし
+
+  # =========================================
+  # リレーション
+  # =========================================
+  # なし
+
+  # =========================================
+  # カラム
+  # =========================================
+  # 名前
+  t.string  'name',                 null: false,
+                                    limit: 191
+
+  # メールアドレス
+  t.string  'email',                null: false,
+                                    limit: 191
+  t.index   'email',                name: "#{index_key}email"
+  t.index   %w[email deleted_at],   name: "#{index_key}email_deleted_uniq",
+                                    unique: true
+
+  t.string  'password_digest',      null: false,
+                                    limit: 191
+  t.index   'password_digest',      name: "#{index_key}password_digest",
+                                    unique: true
+
+  # =========================================
+  # 画像
+  # =========================================
+  # なし
+
+  # =========================================
+  # 論理削除
+  # =========================================
+  t.datetime 'deleted_at'
+  t.index    'deleted_at',          name: "#{index_key}deleted_at"
+
+  # =========================================
+  # 作成・更新日時
+  # =========================================
+  t.datetime 'created_at'
+  t.datetime 'updated_at'
+end
