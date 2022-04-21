@@ -19,4 +19,10 @@
 #  index_assets_on_user_id     (user_id)
 #
 class Asset < ApplicationRecord
+  act_as_paranoid
+
+  belongs_to :user
+
+  has_many :asset_mappings, dependent: :destroy
+  has_many :products, through: :asset_mappings
 end

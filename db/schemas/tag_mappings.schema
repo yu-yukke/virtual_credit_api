@@ -14,9 +14,9 @@ create_table 'tag_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4', c
   # =========================================
   # リレーション
   # =========================================
-  # ユーザーID
-  t.bigint  'user_id',              null: false
-  t.index   'user_id',              name: "#{index_key}user_id"
+  # 作品ID
+  t.bigint  'product_id',           null: false
+  t.index   'product_id',           name: "#{index_key}product_id"
 
   # タグID
   t.bigint  'tag_id',               null: false

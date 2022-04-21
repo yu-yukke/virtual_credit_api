@@ -16,4 +16,7 @@
 #  index_categories_on_deleted_at  (deleted_at)
 #
 class Category < ApplicationRecord
+  act_as_paranoid
+
+  has_many :products
 end

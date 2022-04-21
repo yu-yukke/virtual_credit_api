@@ -18,4 +18,8 @@
 #  index_asset_mappings_on_product_id  (product_id)
 #
 class AssetMapping < ApplicationRecord
+  act_as_paranoid
+
+  belongs_to :asset
+  belongs_to :product
 end

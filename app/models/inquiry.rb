@@ -18,4 +18,7 @@
 #  index_inquiries_on_user_id     (user_id)
 #
 class Inquiry < ApplicationRecord
+  act_as_paranoid
+
+  belongs_to :user
 end
