@@ -180,14 +180,14 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "tag_mappings", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
     t.bigint "tag_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_tag_mappings_on_deleted_at"
+    t.index ["product_id"], name: "index_tag_mappings_on_product_id"
     t.index ["tag_id"], name: "index_tag_mappings_on_tag_id"
-    t.index ["user_id"], name: "index_tag_mappings_on_user_id"
   end
 
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|

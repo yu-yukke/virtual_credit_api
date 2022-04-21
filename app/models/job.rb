@@ -16,4 +16,8 @@
 #  index_jobs_on_deleted_at  (deleted_at)
 #
 class Job < ApplicationRecord
+  act_as_paranoid
+
+  has_many :job_mappings, dependent: :destroy
+  has_many :users, through: :job_mappings
 end

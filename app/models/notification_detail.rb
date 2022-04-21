@@ -18,4 +18,7 @@
 #  notification_details_on_notification_id  (notification_id)
 #
 class NotificationDetail < ApplicationRecord
+  act_as_paranoid
+
+  belongs_to :notification
 end

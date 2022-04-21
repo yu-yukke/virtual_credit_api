@@ -18,4 +18,5 @@
 #  index_release_notes_on_deleted_at  (deleted_at)
 #
 class ReleaseNote < ApplicationRecord
+  act_as_paranoid
 end

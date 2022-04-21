@@ -16,4 +16,7 @@
 #  index_notifications_on_deleted_at  (deleted_at)
 #
 class Notification < ApplicationRecord
+  act_as_paranoid
+
+  has_many :notification_details, dependent: :destroy
 end

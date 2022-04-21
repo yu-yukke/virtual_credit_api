@@ -20,4 +20,7 @@
 #  index_image_files_on_product_id  (product_id)
 #
 class ImageFile < ApplicationRecord
+  act_as_paranoid
+
+  belongs_to :product
 end

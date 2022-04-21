@@ -17,4 +17,10 @@
 #  index_tags_on_user_id     (user_id)
 #
 class Tag < ApplicationRecord
+  act_as_paranoid
+
+  belongs_to :user
+
+  has_many :tag_mappings, dependent: :destroy
+  has_many :products, through: :tag_mappings
 end

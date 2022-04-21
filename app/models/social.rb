@@ -20,4 +20,7 @@
 #  index_socials_on_user_id     (user_id) UNIQUE
 #
 class Social < ApplicationRecord
+  act_as_paranoid
+
+  belongs_to :user
 end
