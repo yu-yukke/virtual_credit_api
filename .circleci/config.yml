@@ -40,12 +40,12 @@ jobs:
       RAILS_ENV: test
     steps:
       - setup
-      - run:
-          name: Database Migration
-          command: bundle exec rake ridge:migrate
-      - run:
-          name: Run Rspec
-          command: bundle exec rspec
+      # - run:
+      #     name: Database Migration
+      #     command: bundle exec rake ridge:migrate
+      # - run:
+      #     name: Run Rspec
+      #     command: bundle exec rspec
   rubocop:
     docker:
       - image: circleci/ruby:2.7.5-node-browsers
