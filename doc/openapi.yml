@@ -1,0 +1,278 @@
+openapi: 3.0.2
+info:
+  title: VirtualCreditOpenAPI
+  version: 1.0.0
+  description: VirtualCreditSchemaInformation
+tags:
+  - name: users
+    description: ユーザーAPI
+paths:
+  /users:
+    get:
+      summary: ユーザー一覧を取得
+      description: ユーザー一覧を取得
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+                required:
+                  - items
+              examples:
+                example-1:
+                  value:
+                    items:
+                      - id: 1
+                        name: string
+                        description: string
+                        main_image_url: string
+                        thumb_image_url: string
+                        created_at: string
+                        updated_at: string
+                        deleted_at: string
+                        social:
+                          twitter_id: string
+                          youtube_id: string
+                          instagram_id: string
+                          facebook_id: string
+                        userLogin:
+                          email: string
+                          last_logged_in_at: string
+                          created_at: string
+                          updated_at: string
+                          deleted_at: string
+          headers: {}
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+              examples:
+                example:
+                  $ref: '#/components/examples/BadRequestExample'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+              examples:
+                example:
+                  $ref: '#/components/examples/ServerErrorExample'
+      operationId: getUsers
+  '/users/{user_id}':
+    parameters:
+      - $ref: '#/components/parameters/userId'
+    get:
+      summary: ユーザーを取得
+      tags:
+        - users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                example-1:
+                  value:
+                    id: 1
+                    name: string
+                    description: string
+                    main_image_url: string
+                    thumb_image_url: string
+                    created_at: string
+                    updated_at: string
+                    deleted_at: string
+                    social:
+                      twitter_id: string
+                      youtube_id: string
+                      instagram_id: string
+                      facebook_id: string
+                    userLogin:
+                      email: string
+                      last_logged_in_at: string
+                      created_at: string
+                      updated_at: string
+                      deleted_at: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+              examples:
+                example:
+                  $ref: '#/components/examples/BadRequestExample'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+              examples:
+                example:
+                  $ref: '#/components/examples/NotFoundExample'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+              examples:
+                example:
+                  $ref: '#/components/examples/ServerErrorExample'
+      operationId: getUserById
+      description: idを指定してユーザーを取得
+      parameters: []
+servers:
+  - url: 'http://localhost:3000/api/v1'
+    description: ローカル環境/v1
+components:
+  securitySchemes: {}
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ユーザー情報
+      x-examples: {}
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        main_image_url:
+          type: string
+        thumb_image_url:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+        social:
+          $ref: '#/components/schemas/Social'
+        userLogin:
+          $ref: '#/components/schemas/UserLogin'
+      required:
+        - id
+        - name
+        - description
+        - main_image_url
+        - thumb_image_url
+        - created_at
+        - updated_at
+        - social
+        - userLogin
+    BadRequest:
+      title: BadRequest
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      required:
+        - code
+        - message
+      description: 400 Bad Request
+      x-examples: {}
+    Social:
+      title: Social
+      type: object
+      description: ソーシャルメディア
+      properties:
+        twitter_id:
+          type: string
+        youtube_id:
+          type: string
+        instagram_id:
+          type: string
+        facebook_id:
+          type: string
+      required:
+        - twitter_id
+    NotFound:
+      title: NotFound
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      required:
+        - code
+        - message
+      x-examples:
+        example:
+          code: 404
+          message: Not Found
+      description: 404 Not Found
+    ServerError:
+      title: ServerError
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+      x-examples:
+        example:
+          code: 500
+          message: Server Error
+      description: 500 Server Error
+    UserLogin:
+      title: UserLogin
+      type: object
+      description: ユーザーログイン情報
+      properties:
+        email:
+          type: string
+        last_logged_in_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+      required:
+        - email
+        - last_logged_in_at
+        - created_at
+        - updated_at
+  parameters:
+    userId:
+      name: user_id
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: ユーザーID
+  examples:
+    BadRequestExample:
+      value:
+        code: 400
+        message: Bad Request
+    NotFoundExample:
+      value:
+        code: 404
+        message: Not Found
+    ServerErrorExample:
+      value:
+        code: 500
+        message: Server Error
