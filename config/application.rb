@@ -31,10 +31,22 @@ module Myapp
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = "Tokyo"
+    config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.template_engine false
+      g.assets false
+      g.helper false
+      g.skip_routes true
+      g.test_framework :rspec,
+        controller_specs: false,
+        view_specs: false,
+        helper_specs: false,
+        routing_specs: false,
+        fixtures: true
+      g.fixture_replacement :factory_bot, dir: "spec/factories"
+    end
   end
 end

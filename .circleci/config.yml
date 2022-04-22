@@ -24,13 +24,13 @@ jobs:
     docker:
       - image: circleci/ruby:2.7.5-node-browsers
       - image: circleci/mysql:5.7
-        name: db
+        name: db_test
         environment:
           MYSQL_USER: 'test'
           MYSQL_ROOT_PASSWORD: 'password'
           MYSQL_PASSWORD: 'password'
-          MYSQL_DATABASE: 'virtual_credit_api_test'
-          MYSQL_HOST: 'db'
+          MYSQL_DATABASE: 'virtual_credit_test'
+          MYSQL_HOST: 'db_test'
     environment:
       BUNDLE_JOBS: '4'
       BUNDLE_RETRY: '3'
@@ -40,15 +40,9 @@ jobs:
       RAILS_ENV: test
     steps:
       - setup
-      - run:
-          name: hoge
-          command: echo 'hello world'
       # - run:
       #     name: Database Migration
-      #     command: bundle exec rails db:migrate
-      # - run:
-      #     name: Database setup
-      #     command: bundle exec rails db:schema:load --trace
+      #     command: bundle exec rake ridge:migrate
       # - run:
       #     name: Run Rspec
       #     command: bundle exec rspec
