@@ -4,13 +4,23 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: root
+      MYSQL_DATABASE: virtual_credit_development
       TZ: Asia/Tokyo
     ports:
       - '3307:3306'
     volumes:
       - ./tmp/db:/var/lib/mysql
 
+  db_test:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: virtual_credit_test
+      TZ: Asia/Tokyo
+    ports:
+      - '3308:3306'
+    volumes:
+      - ./tmp/db_test:/var/lib/mysql
   web:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -20,6 +30,7 @@ services:
       - '3000:3000'
     depends_on:
       - db
+      - db_test
 
   doc:
     image: swaggerapi/swagger-ui
