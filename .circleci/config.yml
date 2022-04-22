@@ -24,13 +24,13 @@ jobs:
     docker:
       - image: circleci/ruby:2.7.5-node-browsers
       - image: circleci/mysql:5.7
-        name: db
+        name: db_test
         environment:
           MYSQL_USER: 'test'
           MYSQL_ROOT_PASSWORD: 'password'
           MYSQL_PASSWORD: 'password'
-          MYSQL_DATABASE: 'virtual_credit_api_test'
-          MYSQL_HOST: 'db'
+          MYSQL_DATABASE: 'virtual_credit_test'
+          MYSQL_HOST: 'db_test'
     environment:
       BUNDLE_JOBS: '4'
       BUNDLE_RETRY: '3'
