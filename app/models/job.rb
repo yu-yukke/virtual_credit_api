@@ -20,4 +20,6 @@ class Job < ApplicationRecord
 
   has_many :job_mappings, dependent: :destroy
   has_many :users, through: :job_mappings
+
+  validates :name, presence: true
 end
