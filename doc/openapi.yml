@@ -51,24 +51,6 @@ paths:
                           updated_at: string
                           deleted_at: string
           headers: {}
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequest'
-              examples:
-                example:
-                  $ref: '#/components/examples/BadRequestExample'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServerError'
-              examples:
-                example:
-                  $ref: '#/components/examples/ServerErrorExample'
       operationId: getUsers
   '/users/{user_id}':
     parameters:
@@ -106,33 +88,6 @@ paths:
                       created_at: string
                       updated_at: string
                       deleted_at: string
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequest'
-              examples:
-                example:
-                  $ref: '#/components/examples/BadRequestExample'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotFound'
-              examples:
-                example:
-                  $ref: '#/components/examples/NotFoundExample'
-        '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServerError'
-              examples:
-                example:
-                  $ref: '#/components/examples/ServerErrorExample'
       operationId: getUserById
       description: idを指定してユーザーを取得
       parameters: []
