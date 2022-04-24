@@ -37,7 +37,7 @@ gem "paranoia", "~> 2.2"
 gem "active_model_serializers"
 
 # ancestry
-gem 'ancestry'
+gem "ancestry"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -77,7 +77,7 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 5.0'
+  gem "shoulda-matchers", "~> 5.0"
   gem "rspec_junit_formatter"
 end
 
