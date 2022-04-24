@@ -17,6 +17,7 @@
 #
 class Job < ApplicationRecord
   acts_as_paranoid
+  has_ancestry
 
   has_many :job_mappings, dependent: :destroy
   has_many :users, through: :job_mappings

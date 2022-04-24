@@ -65,6 +65,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    ancestry (4.1.0)
+      activerecord (>= 5.2.6)
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
@@ -245,6 +247,8 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
+    shoulda-matchers (5.1.0)
+      activesupport (>= 5.2.0)
     spring (3.1.1)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -282,6 +286,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  ancestry
   annotate
   better_errors
   binding_of_caller
@@ -304,6 +309,7 @@ DEPENDENCIES
   rspec_junit_formatter
   rubocop-rails_config
   sass-rails (>= 6)
+  shoulda-matchers (~> 5.0)
   spring (~> 3.1.1)
   turbolinks (~> 5)
   tzinfo-data
