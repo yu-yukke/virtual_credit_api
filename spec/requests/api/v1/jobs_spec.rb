@@ -13,6 +13,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
         subject
         json_body = JSON.parse(response.body)
 
+        assert_response_schema_confirm
         expect(json_body["items"]).to be_empty
       end
     end
@@ -26,6 +27,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
         subject
         json_body = JSON.parse(response.body)
 
+        assert_response_schema_confirm
         expect(json_body["items"].length).to eq 10
       end
     end
