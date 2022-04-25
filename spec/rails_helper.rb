@@ -72,6 +72,7 @@ RSpec.configure do |config|
     schema_path: Rails.root.join('doc', 'openapi.yml').to_s,
     query_hash_key: 'rack.request.query_hash',
     parse_response_by_content_type: false,
+    prefix: "/api/v1"
   }
 end
 
