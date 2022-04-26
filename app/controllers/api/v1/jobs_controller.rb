@@ -18,11 +18,10 @@ class Api::V1::JobsController < ApplicationController
   end
 
   private
-
-  def job_params
-    params.require(:job).permit(
-      :name,
-      :ancestry
-    )
-  end
+    def job_params
+      params.require(:job).permit(
+        :name,
+        :ancestry
+      )
+    end
 end

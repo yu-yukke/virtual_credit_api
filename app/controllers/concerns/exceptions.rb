@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exceptions
   extend ActiveSupport::Concern
 
@@ -11,25 +13,25 @@ module Exceptions
     rescue_from ActionController::RoutingError, with: :rescue404
     rescue_from Exception, with: :rescue500
 
-    def rescue500 e
+    def rescue500(e)
       render json: "サーバーエラーが発生しました。", status: 500
 
       Rails.logger.error e
     end
 
-    def rescue403 e
+    def rescue403(e)
       render json: "指定のページへはアクセスできません・", status: 403
 
       Rails.logger.error e
     end
 
-    def not_found e
+    def not_found(e)
       render json: "対象のレコードが存在しません。", status: 404
 
       Rails.logger.error e
     end
 
-    def rescue404 e
+    def rescue404(e)
       render json: "ページが存在しません。", status: 404
 
       Rails.logger.error e
