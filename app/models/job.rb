@@ -22,5 +22,14 @@ class Job < ApplicationRecord
   has_many :job_mappings, dependent: :destroy
   has_many :users, through: :job_mappings
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
+
+  validate :check_parent_exists
+
+  private
+    def check_parent_exists
+      return unless self.ancestry
+
+      errors.add(:base, "ancestryの値が不正です") unless parent
+    end
 end

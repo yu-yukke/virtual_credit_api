@@ -10,6 +10,16 @@ RSpec.describe Job, type: :model do
 
   describe "validations" do
     it { should validate_presence_of(:name) }
+
+    context "uniqueness" do
+      before { FactoryBot.create(:job, name: "TestUser") }
+
+      let(:job) { FactoryBot.build(:job, name: "TestUser") }
+
+      it "is expected to validate that :name cannot be duplicated" do
+        expect(job).not_to be_valid
+      end
+    end
   end
 
   describe "ancestry" do
