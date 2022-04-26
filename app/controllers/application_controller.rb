@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Exceptions
   include ActionController::Cookies
   include ActionController::RequestForgeryProtection
 
