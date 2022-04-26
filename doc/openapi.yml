@@ -7,13 +7,11 @@ info:
     name: email
     email: yukke5222@gmail.com
 tags:
-  - name: jobs
+  - name: Job
 paths:
   /jobs:
     get:
       summary: ジョブ一覧を取得
-      tags:
-        - jobs
       responses:
         '200':
           description: OK
@@ -25,6 +23,49 @@ paths:
                   $ref: '#/components/schemas/Job'
       operationId: getJobs
       description: ジョブ一覧を取得
+      tags:
+        - Job
+    post:
+      summary: ジョブを作成
+      operationId: postJobs
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - errors
+      description: ジョブを作成
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                ancestry:
+                  type: string
+                  nullable: true
+              required:
+                - name
+                - ancestry
+        description: ''
+      tags:
+        - Job
 servers:
   - url: 'http://localhost:3000/api/v1'
     description: ローカル環境/v1
@@ -62,3 +103,4 @@ components:
         - number_of_users
   parameters: {}
   examples: {}
+  responses: {}

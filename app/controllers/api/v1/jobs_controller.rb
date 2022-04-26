@@ -2,7 +2,7 @@
 
 class Api::V1::JobsController < ApplicationController
   def index
-    response = Job.all
-    render json: response, each_serializer: JobSerializer
+    jobs = Job.all
+    render json: jobs, each_serializer: JobSerializer
   end
 end
