@@ -48,7 +48,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
 
     context "when name is nil" do
       let(:name) { nil }
-      let(:ancestry) { "1" }
+      let(:ancestry) { nil }
 
       it_behaves_like "return 422 unprocessable entity"
 
@@ -61,7 +61,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
 
     context "when name is blank" do
       let(:name) { "" }
-      let(:ancestry) { "1" }
+      let(:ancestry) { nil }
 
       it_behaves_like "return 422 unprocessable entity"
 
@@ -72,9 +72,22 @@ RSpec.describe "Api::V1::Jobs", type: :request do
       end
     end
 
+    context "when name is duplicated" do
+      before { FactoryBot.create(:job, name: "TestUser") }
+
+      let(:name) { "TestUser" }
+      let(:ancestry) { nil }
+
+      it "is expected not to create Job" do
+        expect { subject }.not_to change(Job, :count)
+
+        assert_response_schema_confirm 422
+      end
+    end
+
     context "when name is present" do
       let(:name) { Faker::Name.name }
-      let(:ancestry) { "1" }
+      let(:ancestry) { nil }
 
       it_behaves_like "return 201 created"
 
@@ -117,9 +130,10 @@ RSpec.describe "Api::V1::Jobs", type: :request do
       end
     end
 
-    context "when ancestry is present" do
+    context "when ancestry with some parent Job is present" do
+      let!(:parent_job) { FactoryBot.create(:job) }
       let(:name) { Faker::Name.name }
-      let(:ancestry) { "1" }
+      let(:ancestry) { parent_job.id.to_s }
 
       it_behaves_like "return 201 created"
 
@@ -130,6 +144,19 @@ RSpec.describe "Api::V1::Jobs", type: :request do
         expect(json_body["ancestry"]).to eq ancestry
 
         assert_response_schema_confirm 201
+      end
+    end
+
+    context "when ancestry with no parent Job is present" do
+      let(:name) { Faker::Name.name }
+      let(:ancestry) { "1" }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to create Job" do
+        expect { subject }.not_to change(Job, :count)
+
+        assert_response_schema_confirm 422
       end
     end
   end
