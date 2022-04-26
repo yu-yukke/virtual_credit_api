@@ -4,9 +4,32 @@ require "rails_helper"
 
 RSpec.describe "Api::V1::Jobs", type: :request do
   describe "GET /index" do
-    it "returns http success" do
-      get api_v1_jobs_path
-      expect(response).to have_http_status(:success)
+    subject { get api_v1_jobs_path }
+
+    context "when no jobs" do
+      it_behaves_like "return 200 success"
+
+      it "is expected to return empty" do
+        subject
+        json_body = JSON.parse(response.body)
+
+        assert_response_schema_confirm 200
+        expect(json_body).to be_empty
+      end
+    end
+
+    context "when 10 jobs" do
+      before { FactoryBot.create_list(:job, 10) }
+
+      it_behaves_like "return 200 success"
+
+      it "is expected to return all jobs" do
+        subject
+        json_body = JSON.parse(response.body)
+
+        assert_response_schema_confirm 200
+        expect(json_body.length).to eq 10
+      end
     end
   end
 end
