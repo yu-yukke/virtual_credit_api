@@ -50,6 +50,8 @@ components:
         deleted_at:
           type: string
           nullable: true
+        number_of_users:
+          type: integer
       required:
         - id
         - name
@@ -57,5 +59,6 @@ components:
         - created_at
         - updated_at
         - deleted_at
+        - number_of_users
   parameters: {}
   examples: {}
