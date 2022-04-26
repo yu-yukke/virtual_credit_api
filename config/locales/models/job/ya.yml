@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+ja:
+  activerecord:
+    attributes:
+      job:
+        name: ジョブ名称
+        ancestry: ancestry
