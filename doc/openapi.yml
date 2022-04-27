@@ -104,6 +104,28 @@ paths:
         name: job_id
         in: path
         required: true
+    delete:
+      summary: ジョブを削除
+      operationId: deleteJobs
+      responses:
+        '204':
+          description: No Content
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - errors
+      description: ジョブを削除
+      tags:
+        - Job
 servers:
   - url: 'http://localhost:3000/api/v1'
     description: ローカル環境/v1
