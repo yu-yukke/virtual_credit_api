@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: jobs
+#
+#  id         :bigint           not null, primary key
+#  name       :string(191)      not null
+#  ancestry   :string(191)
+#  deleted_at :datetime
+#  created_at :datetime
+#  updated_at :datetime
+#
+# Indexes
+#
+#  index_jobs_on_deleted_at  (deleted_at)
+#
 require "rails_helper"
 
 RSpec.describe Job, type: :model do
@@ -18,6 +33,25 @@ RSpec.describe Job, type: :model do
 
       it "is expected to validate that :name cannot be duplicated" do
         expect(job).not_to be_valid
+      end
+    end
+
+    context "check_parent_exists" do
+      context "when parent is not exist" do
+        let(:job) { FactoryBot.build(:job, ancestry: "1") }
+
+        it "is expected to validate that parent must be exist" do
+          expect(job).not_to be_valid
+        end
+      end
+
+      context "when parent is exist" do
+        let!(:parent_job) { FactoryBot.create(:job) }
+        let(:job) { FactoryBot.build(:job, ancestry: parent_job.id.to_s) }
+
+        it "is expected to be valid" do
+          expect(job).to be_valid
+        end
       end
     end
   end

@@ -8,6 +8,10 @@ shared_examples "return 201 created" do
   it { is_expected.to eq 201 }
 end
 
+shared_examples "return 204 no content" do
+  it { is_expected.to eq 204 }
+end
+
 shared_examples "return 400 bad request" do
   it { is_expected.to eq 400 }
 end
