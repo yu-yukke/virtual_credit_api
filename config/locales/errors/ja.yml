@@ -1,0 +1,23 @@
+# frozen_string_literal: true
+
+ja:
+  errors:
+    format: '%{message}'
+    messages: &errors_messages
+      inclusion: '%{attribute}が正しくありません。'
+      invalid: '%{attribute}が正しくありません。'
+      empty: '%{attribute}を入力してください。'
+      blank: '%{attribute}を入力してください。'
+      required: '%{attribute}を入力してください。'
+      too_long: '%{attribute}は%{count}文字以内で入力してください。'
+      too_short: '%{attribute}は%{count}文字以上で入力してください。'
+      wrong_length: '%{attribute}は%{count}文字で入力してください。'
+      not_a_number: '%{attribute}は数値で入力してください。'
+      not_an_integer: '%{attribute}は整数で入力してください。'
+      greater_than: '%{attribute}は%{count}より大きい値を入力してください。'
+      greater_than_or_equal_to: '%{attribute}は%{count}以上の値を入力してください。'
+      equal_to: '%{attribute}は%{count}にしてください。'
+      less_than: '%{attribute}は%{count}より小さい値にしてください。'
+      less_than_or_equal_to: '%{attribute}は%{count}以下の値にしてください。'
+      taken: '%{attribute}がすでに使用されています。'
+      invalid_chars: '%{attribute}に使用できない文字が含まれています（%{chars}）。'
