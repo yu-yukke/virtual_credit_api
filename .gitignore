@@ -37,3 +37,6 @@ yarn-debug.log*
 
 # Ignore bundler gems.
 vendor/bundle
+
+# Ignore coverage
+coverage
