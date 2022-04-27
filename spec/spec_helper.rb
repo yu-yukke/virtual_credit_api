@@ -16,20 +16,20 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 # coverage
-require 'simplecov'
+require "simplecov"
 
 SimpleCov.minimum_coverage 90
 SimpleCov.start do
-  add_filter 'spec'
-  add_filter 'vendor'
+  add_filter "spec"
+  add_filter "vendor"
   add_filter do |source_file|
     source_file.lines.count < 5
   end
 
   enable_coverage :branch
 
-  add_group 'Models', 'app/models'
-  add_group 'Controllers (api)', 'app/controllers/api'
+  add_group "Models", "app/models"
+  add_group "Controllers (api)", "app/controllers/api"
 end
 
 RSpec.configure do |config|
