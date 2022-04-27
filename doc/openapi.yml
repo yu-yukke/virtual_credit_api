@@ -66,6 +66,47 @@ paths:
         description: ''
       tags:
         - Job
+    parameters: []
+  '/jobs/{job_id}':
+    patch:
+      summary: ジョブを更新
+      operationId: patchJobs
+      responses:
+        '204':
+          description: No Content
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - errors
+      description: ジョブを更新
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                ancestry:
+                  type: string
+                  nullable: true
+      tags:
+        - Job
+    parameters:
+      - schema:
+          type: integer
+        name: job_id
+        in: path
+        required: true
 servers:
   - url: 'http://localhost:3000/api/v1'
     description: ローカル環境/v1
