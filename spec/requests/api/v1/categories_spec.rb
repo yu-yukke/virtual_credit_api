@@ -235,4 +235,86 @@ RSpec.describe "Api::V1::Categories", type: :request do
       end
     end
   end
+
+  describe "PATCH #update" do
+    let!(:parent_category) { FactoryBot.create(:category, name: "ParentCategory") }
+    let(:parent_category_2) { FactoryBot.create(:category) }
+    let!(:category) { FactoryBot.create(:category, name: "TestCategory", ancestry: parent_category.id.to_s) }
+
+    subject {
+      patch api_v1_category_path(category), params: params
+    }
+
+    context "when name is nil" do
+      let(:params) {
+        {
+          category: {
+            name: nil
+          }
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :name" do
+        expect { subject }.not_to change { category.reload.name }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when name is blank" do
+      let(:params) {
+        {
+          category: {
+            name: ""
+          }
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :name" do
+        expect { subject }.not_to change { category.reload.name }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when name is duplicated" do
+      let(:params) {
+        {
+          category: {
+            name: "ParentCategory"
+          }
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :name" do
+        expect { subject }.not_to change { category.reload.name }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when name is valid" do
+      let(:params) {
+        {
+          category: {
+            name: "NewName"
+          }
+        }
+      }
+
+      it_behaves_like "return 204 no content"
+
+      it "is expected to change :name" do
+        expect { subject }.to change { category.reload.name }.to("NewName")
+
+        assert_response_schema_confirm 204
+      end
+    end
+  end
 end
