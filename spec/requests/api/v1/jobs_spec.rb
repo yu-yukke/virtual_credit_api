@@ -282,4 +282,34 @@ RSpec.describe "Api::V1::Jobs", type: :request do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    let!(:parent_job) { FactoryBot.create(:job) }
+
+    subject { delete api_v1_job_path(parent_job) }
+
+    context "when parent has no children" do
+      it_behaves_like "return 204 no content"
+
+      it "is expected to delete job" do
+        expect { subject }.to change(Job, :count).by -1
+        expect(parent_job.reload.deleted_at).to be_present
+
+        assert_response_schema_confirm 204
+      end
+    end
+
+    context "when parent has children" do
+      before { FactoryBot.create(:job, ancestry: parent_job.id.to_s) }
+
+      it_behaves_like "return 400 bad request"
+
+      it "is expected to delete job" do
+        expect { subject }.not_to change(Job, :count)
+        expect(parent_job.reload.deleted_at).not_to be_present
+
+        assert_response_schema_confirm 400
+      end
+    end
+  end
 end
