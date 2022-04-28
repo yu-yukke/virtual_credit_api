@@ -40,7 +40,3 @@ vendor/bundle
 
 # Ignore coverage
 coverage
-
-# Ignore env
-.env
-.env.test
