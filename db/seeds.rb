@@ -4,18 +4,30 @@ require "securerandom"
 
 # ジョブ
 15.times do |n|
-  Job.create!(
-    name: "テストジョブ_#{n}",
-    ancestry: "#{n == 0 ? '' : '1'}"
-  )
+  if n == 0
+    Job.create!(
+      name: "テストジョブ_#{n}"
+    )
+  else
+    Job.create!(
+      name: "テストジョブ_#{n}",
+      ancestry: "1"
+    )
+  end
 end
 
 # カテゴリ
 15.times do |n|
-  Category.create!(
-    name: "テストカテゴリー_#{n}",
-    ancestry: "#{n == 0 ? '' : '1'}"
-  )
+  if n == 0
+    Category.create!(
+      name: "テストカテゴリー_#{n}"
+    )
+  else
+    Category.create!(
+      name: "テストカテゴリー_#{n}",
+      ancestry: "1"
+    )
+  end
 end
 
 # ユーザー

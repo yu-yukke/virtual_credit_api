@@ -40,3 +40,6 @@ vendor/bundle
 
 # Ignore coverage
 coverage
+
+# Ignore test credential key
+/config/credentials/test.key
