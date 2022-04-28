@@ -7,12 +7,12 @@ RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
     apt-get update && apt-get install -y yarn
 
 RUN apt-get update -qq && apt-get install -y nodejs yarn
-RUN mkdir /myapp
-WORKDIR /myapp
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+RUN mkdir /virtual_credit_api
+WORKDIR /virtual_credit_api
+COPY Gemfile /virtual_credit_api/Gemfile
+COPY Gemfile.lock /virtual_credit_api/Gemfile.lock
 RUN bundle install
-COPY . /myapp
+COPY . /virtual_credit_api
 
 RUN yarn install --check-files
 RUN bundle exec rails webpacker:compile
@@ -21,7 +21,7 @@ RUN bundle exec rails webpacker:compile
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 3000
+EXPOSE 4000
 
 # Rails サーバ起動
 CMD ["rails", "server", "-b", "0.0.0.0"]
