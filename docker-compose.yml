@@ -21,13 +21,13 @@ services:
       - '3308:3306'
     volumes:
       - ./tmp/db_test:/var/lib/mysql
-  web:
+  app:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
     volumes:
-      - .:/myapp
+      - .:/virtual_credit_api
     ports:
-      - '3000:3000'
+      - '4000:4000'
     depends_on:
       - db
       - db_test

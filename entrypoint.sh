@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
 
-rm -f /myapp/tmp/pids/server.pid
+rm -f /virtual_credit_api/tmp/pids/server.pid
 
 exec "$@"
