@@ -35,6 +35,41 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     end
   end
 
+  describe "GET #show" do
+    context "when job exists" do
+      subject { get api_v1_job_path(job) }
+
+      let(:job) { FactoryBot.create(:job) }
+
+      it_behaves_like "return 200 success"
+
+      it "is expected to return job" do
+        subject
+
+        json_body = JSON.parse(response.body)
+        expect(json_body["name"]).to eq job.name
+        expect(json_body["ancestry"]).to eq job.ancestry
+
+        assert_response_schema_confirm 200
+      end
+    end
+
+    context "when job does not exist" do
+      subject { get api_v1_job_path(10000000) }
+
+      it_behaves_like "return 404 not found"
+
+      it "is expected not to return job" do
+        subject
+
+        json_body = JSON.parse(response.body)
+        expect(json_body["error"]).to eq "対象のレコードが存在しません。"
+
+        assert_response_schema_confirm 404
+      end
+    end
+  end
+
   describe "POST #create" do
     subject {
       post api_v1_jobs_path, params: params
