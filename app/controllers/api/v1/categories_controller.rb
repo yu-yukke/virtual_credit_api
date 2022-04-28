@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::CategoriesController < ApplicationController
-  before_action :find_category, only: %i(show)
+  before_action :find_category, only: %i(show update)
 
   def index
     categories = Category.all
@@ -23,6 +23,14 @@ class Api::V1::CategoriesController < ApplicationController
     end
   end
 
+  def update
+    if @category.update update_category_params
+      render json: {}, status: 204
+    else
+      render json: { errors: @category.errors.full_messages }, status: 422
+    end
+  end
+
   private
     def find_category
       @category = Category.find params[:id]
@@ -32,6 +40,12 @@ class Api::V1::CategoriesController < ApplicationController
       params.require(:category).permit(
         :name,
         :ancestry
+      )
+    end
+
+    def update_category_params
+      params.require(:category).permit(
+        :name
       )
     end
 end
