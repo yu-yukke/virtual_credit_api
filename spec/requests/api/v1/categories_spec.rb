@@ -19,6 +19,41 @@ RSpec.describe "Api::V1::Categories", type: :request do
       end
     end
 
+    describe "GET #show" do
+      context "when category exists" do
+        subject { get api_v1_category_path(category) }
+
+        let(:category) { FactoryBot.create(:category) }
+
+        it_behaves_like "return 200 success"
+
+        it "is expected to return category" do
+          subject
+
+          json_body = JSON.parse(response.body)
+          expect(json_body["name"]).to eq category.name
+          expect(json_body["ancestry"]).to eq category.ancestry
+
+          assert_response_schema_confirm 200
+        end
+      end
+
+      context "when category does not exist" do
+        subject { get api_v1_category_path(10000000) }
+
+        it_behaves_like "return 404 not found"
+
+        it "is expected not to return category" do
+          subject
+
+          json_body = JSON.parse(response.body)
+          expect(json_body["error"]).to eq "対象のレコードが存在しません。"
+
+          assert_response_schema_confirm 404
+        end
+      end
+    end
+
     context "when 10 categories" do
       before { FactoryBot.create_list(:category, 10) }
 
