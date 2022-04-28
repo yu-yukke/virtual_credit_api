@@ -8,6 +8,7 @@ info:
     email: yukke5222@gmail.com
 tags:
   - name: Job
+  - name: Category
 paths:
   /jobs:
     get:
@@ -161,6 +162,22 @@ paths:
       description: ジョブを取得
       tags:
         - Job
+  /categories:
+    get:
+      summary: カテゴリ一覧を取得
+      tags:
+        - Category
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+      operationId: getCategories
+      description: カテゴリ一覧を取得
 servers:
   - url: 'http://localhost:3000/api/v1'
     description: ローカル環境/v1
@@ -179,6 +196,8 @@ components:
         ancestry:
           type: string
           nullable: true
+        number_of_users:
+          type: integer
         created_at:
           type: string
         updated_at:
@@ -186,16 +205,43 @@ components:
         deleted_at:
           type: string
           nullable: true
-        number_of_users:
-          type: integer
       required:
         - id
         - name
         - ancestry
+        - number_of_users
         - created_at
         - updated_at
         - deleted_at
-        - number_of_users
+    Category:
+      title: Category
+      type: object
+      description: カテゴリ情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        ancestry:
+          type: string
+          nullable: true
+        number_of_products:
+          type: integer
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+          nullable: true
+      required:
+        - id
+        - name
+        - ancestry
+        - number_of_products
+        - created_at
+        - updated_at
+        - deleted_at
   parameters: {}
   examples: {}
   responses: {}

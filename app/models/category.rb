@@ -17,6 +17,18 @@
 #
 class Category < ApplicationRecord
   acts_as_paranoid
+  has_ancestry orphan_strategy: :restrict
 
   has_many :products
+
+  validates :name, presence: true, uniqueness: true
+
+  validate :check_parent_exists
+
+  private
+    def check_parent_exists
+      return unless self.ancestry
+
+      errors.add(:base, "ancestryの値が不正です") unless parent
+    end
 end
