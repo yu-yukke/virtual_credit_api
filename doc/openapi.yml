@@ -180,20 +180,6 @@ paths:
                   $ref: '#/components/schemas/Category'
       operationId: getCategories
       description: カテゴリ一覧を取得
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                ancestry:
-                  type: string
-                  nullable: true
-              required:
-                - name
-                - ancestry
     post:
       summary: カテゴリを作成
       operationId: postCategory
@@ -220,6 +206,20 @@ paths:
       description: カテゴリを作成
       tags:
         - Category
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                ancestry:
+                  type: string
+                  nullable: true
+              required:
+                - name
+                - ancestry
   '/categories/{category_id}':
     parameters:
       - schema:
