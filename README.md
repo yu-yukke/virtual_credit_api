@@ -1,14 +1,44 @@
 # README
 
-- schema 変更時
+## ports
 
-* `docker-compose exec app bundle exec rake ridge:migrate`
-* `docker-compose exec app bundle exec rake ridge:migrate RAILS_ENV='test'`
+### app
 
-- seed 投入
+- `4000`
 
-* `docker-compose exec app bundle exec rake db:seed`
+### db
 
-- run spec
+- `3007`
 
-* `docker-compose exec app bundle exec rspec`
+### db_test
+
+- `3008`
+
+### schema
+
+- `8080`
+
+## create database
+
+- `docker-compose exec app bundle exec rails db:create`
+
+## migration
+
+- `docker-compose exec app bundle exec rake ridge:migrate`
+- `docker-compose exec app bundle exec rake ridge:migrate RAILS_ENV='test'`
+
+## seed
+
+- `docker-compose exec app bundle exec rails db:seed`
+
+## run spec
+
+- `docker-compose exec app bundle exec rspec (path/to/spec_file)`
+
+## run rubocop
+
+- `docker-compose exec app bundle exec rubocop`
+
+## annotate
+
+- `docker-compose exec app bundle exec annotate --models --show-indexes`
