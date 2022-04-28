@@ -19,7 +19,7 @@ class Category < ApplicationRecord
   acts_as_paranoid
   has_ancestry orphan_strategy: :restrict
 
-  has_many :products
+  has_many :works
 
   validates :name, presence: true, uniqueness: true
 

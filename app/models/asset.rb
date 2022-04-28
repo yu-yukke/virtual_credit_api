@@ -24,5 +24,5 @@ class Asset < ApplicationRecord
   belongs_to :user
 
   has_many :asset_mappings, dependent: :destroy
-  has_many :products, through: :asset_mappings
+  has_many :works, through: :asset_mappings
 end

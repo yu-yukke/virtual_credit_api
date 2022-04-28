@@ -16,9 +16,9 @@
 #  index_categories_on_deleted_at  (deleted_at)
 #
 class CategorySerializer < ApplicationSerializer
-  attributes :id, :name, :ancestry, :number_of_products
+  attributes :id, :name, :ancestry, :number_of_works
 
-  def number_of_products
-    object.products.count
+  def number_of_works
+    object.works.count
   end
 end

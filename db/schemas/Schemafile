@@ -9,7 +9,7 @@ require 'jobs.schema'
 require 'job_mappings.schema'
 
 # 作品
-require 'products.schema'
+require 'works.schema'
 require 'image_files.schema'
 require 'favorites.schema'
 require 'creator_mappings.schema'

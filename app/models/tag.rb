@@ -22,5 +22,5 @@ class Tag < ApplicationRecord
   belongs_to :user
 
   has_many :tag_mappings, dependent: :destroy
-  has_many :products, through: :tag_mappings
+  has_many :works, through: :tag_mappings
 end

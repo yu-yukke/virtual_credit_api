@@ -5,11 +5,11 @@
 # Table name: image_files
 #
 #  id         :bigint           not null, primary key
-#  product_id :bigint           not null
+#  work_id    :bigint           not null
 #  sequence   :integer          not null
 #  file_type  :integer          default("image"), not null
-#  image_url  :string(255)
 #  video_id   :string(191)
+#  image_url  :string(255)
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
@@ -17,7 +17,7 @@
 # Indexes
 #
 #  index_image_files_on_deleted_at  (deleted_at)
-#  index_image_files_on_product_id  (product_id)
+#  index_image_files_on_work_id     (work_id)
 #
 class ImageFile < ApplicationRecord
   acts_as_paranoid
@@ -27,5 +27,5 @@ class ImageFile < ApplicationRecord
     video: 10
   }.freeze
 
-  belongs_to :product
+  belongs_to :work
 end

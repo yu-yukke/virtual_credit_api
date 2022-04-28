@@ -84,7 +84,7 @@ end
 
 # 作品
 20.times do |n|
-  product = Product.new(
+  work = Work.new(
     category_id: "#{n.odd? ? 1 : 2}",
     name: "テスト作品_#{n}",
     description: "テスト概要\r\nテスト概要\r\nテスト概要"
@@ -92,25 +92,25 @@ end
 
   # 作品イメージ
   5.times do |m|
-    product.image_files.new(
+    work.image_files.new(
       sequence: m + 1,
       image_url: "hogehoge",
       video_id: ""
     )
   end
 
-  product.save!
+  work.save!
 
   # タグマッピング
   3.times do |l|
-    product.tag_mappings.create!(
+    work.tag_mappings.create!(
       tag_id: l + 1
     )
   end
 
   # アセットマッピング
   3.times do |o|
-    product.asset_mappings.create!(
+    work.asset_mappings.create!(
       asset_id: o + 1
     )
   end
@@ -118,11 +118,11 @@ end
   # お気に入り
   User.all.each_with_index do |user, i|
     user.favorites.create!(
-      product_id: product.id
+      work_id: work.id
     )
 
     user.creator_mappings.create!(
-      product_id: product.id,
+      work_id: work.id,
       is_author: "#{i == 0 ? 1 : 0}"
     )
   end
