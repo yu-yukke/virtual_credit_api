@@ -17,7 +17,7 @@ shared_examples "return 400 bad request" do
 end
 
 shared_examples "return 404 not found" do
-  it { is_expected.to eq 404}
+  it { is_expected.to eq 404 }
 end
 
 shared_examples "return 422 unprocessable entity" do
