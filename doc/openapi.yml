@@ -27,7 +27,7 @@ paths:
         - Job
     post:
       summary: ジョブを作成
-      operationId: postJobs
+      operationId: postJob
       responses:
         '201':
           description: Created
@@ -70,7 +70,7 @@ paths:
   '/jobs/{job_id}':
     patch:
       summary: ジョブを更新
-      operationId: patchJobs
+      operationId: patchJob
       responses:
         '204':
           description: No Content
@@ -106,7 +106,7 @@ paths:
         required: true
     delete:
       summary: ジョブを削除
-      operationId: deleteJobs
+      operationId: deleteJob
       responses:
         '204':
           description: No Content

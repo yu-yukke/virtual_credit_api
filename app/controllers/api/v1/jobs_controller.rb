@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::JobsController < ApplicationController
+  before_action :find_job, only: %i(update destroy)
+
   def index
     jobs = Job.all
 
@@ -18,16 +20,26 @@ class Api::V1::JobsController < ApplicationController
   end
 
   def update
-    job = Job.find_by id: params[:id]
-
-    if job.update update_job_params
+    if @job.update update_job_params
       render json: {}, status: 204
     else
-      render json: { errors: job.errors.full_messages }, status: 422
+      render json: { errors: @job.errors.full_messages }, status: 422
+    end
+  end
+
+  def destroy
+    if @job.destroy
+      render json: {}, status: 204
+    else
+      render json: { errors: @job.errors.full_messages }, status: 422
     end
   end
 
   private
+    def find_job
+      @job = Job.find params[:id]
+    end
+
     def job_params
       params.require(:job).permit(
         :name,
