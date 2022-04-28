@@ -137,6 +137,30 @@ paths:
       description: ジョブを削除
       tags:
         - Job
+    get:
+      summary: ジョブを取得
+      operationId: getJob
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
+      description: ジョブを取得
+      tags:
+        - Job
 servers:
   - url: 'http://localhost:3000/api/v1'
     description: ローカル環境/v1
