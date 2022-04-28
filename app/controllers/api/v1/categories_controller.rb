@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::CategoriesController < ApplicationController
-  before_action :find_category, only: %i(show update)
+  before_action :find_category, only: %i(show update destroy)
 
   def index
     categories = Category.all
@@ -29,6 +29,18 @@ class Api::V1::CategoriesController < ApplicationController
     else
       render json: { errors: @category.errors.full_messages }, status: 422
     end
+  end
+
+  def destroy
+    if @category.destroy
+      render json: {}, status: 204
+    else
+      render json: { errors: @category.errors.full_messages }, status: 422
+    end
+  rescue => e
+    render json: { error: "子を持つ親カテゴリーは削除できません。" }, status: 400
+
+    Rails.logger.error e
   end
 
   private
