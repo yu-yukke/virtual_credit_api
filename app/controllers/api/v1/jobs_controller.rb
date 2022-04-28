@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class Api::V1::JobsController < ApplicationController
-  before_action :find_job, only: %i(update destroy)
+  before_action :find_job, only: %i(show update destroy)
 
   def index
     jobs = Job.all
 
     render json: jobs, each_serializer: JobSerializer
+  end
+
+  def show
+    render json: @job, serializer: JobSerializer, status: 200
   end
 
   def create
