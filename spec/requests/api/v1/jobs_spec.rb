@@ -112,12 +112,12 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     end
 
     context "when name is duplicated" do
-      before { FactoryBot.create(:job, name: "TestUser") }
+      before { FactoryBot.create(:job, name: "TestJob") }
 
       let(:params) {
         {
           job: {
-            name: "TestUser"
+            name: "TestJob"
           }
         }
       }

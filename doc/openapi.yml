@@ -178,6 +178,46 @@ paths:
                   $ref: '#/components/schemas/Category'
       operationId: getCategories
       description: カテゴリ一覧を取得
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                ancestry:
+                  type: string
+                  nullable: true
+              required:
+                - name
+                - ancestry
+    post:
+      summary: カテゴリを作成
+      operationId: postCategory
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - errors
+      description: カテゴリを作成
+      tags:
+        - Category
 servers:
   - url: 'http://localhost:3000/api/v1'
     description: ローカル環境/v1
