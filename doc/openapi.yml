@@ -9,10 +9,11 @@ info:
 tags:
   - name: Job
   - name: Category
+  - name: Work
 paths:
   /jobs:
     get:
-      summary: ジョブ一覧を取得
+      summary: ジョブ一覧
       responses:
         '200':
           description: OK
@@ -27,7 +28,7 @@ paths:
       tags:
         - Job
     post:
-      summary: ジョブを作成
+      summary: ジョブ作成
       operationId: postJob
       responses:
         '201':
@@ -70,7 +71,7 @@ paths:
     parameters: []
   '/jobs/{job_id}':
     get:
-      summary: ジョブを取得
+      summary: ジョブ取得
       operationId: getJob
       responses:
         '200':
@@ -94,7 +95,7 @@ paths:
       tags:
         - Job
     patch:
-      summary: ジョブを更新
+      summary: ジョブ更新
       operationId: patchJob
       responses:
         '204':
@@ -132,7 +133,7 @@ paths:
         in: path
         required: true
     delete:
-      summary: ジョブを削除
+      summary: ジョブ削除
       operationId: deleteJob
       responses:
         '204':
@@ -166,7 +167,7 @@ paths:
         - Job
   /categories:
     get:
-      summary: カテゴリ一覧を取得
+      summary: カテゴリ一覧
       tags:
         - Category
       responses:
@@ -181,7 +182,7 @@ paths:
       operationId: getCategories
       description: カテゴリ一覧を取得
     post:
-      summary: カテゴリを作成
+      summary: カテゴリ作成
       operationId: postCategory
       responses:
         '201':
@@ -228,7 +229,7 @@ paths:
         in: path
         required: true
     get:
-      summary: カテゴリを取得
+      summary: カテゴリ取得
       tags:
         - Category
       responses:
@@ -252,7 +253,7 @@ paths:
       operationId: getCategory
       description: カテゴリを取得
     patch:
-      summary: カテゴリを更新
+      summary: カテゴリ更新
       operationId: patchCategory
       responses:
         '204':
@@ -284,7 +285,7 @@ paths:
       tags:
         - Category
     delete:
-      summary: カテゴリを削除
+      summary: カテゴリ削除
       operationId: deleteCategory
       responses:
         '204':
@@ -316,6 +317,23 @@ paths:
       description: カテゴリを削除
       tags:
         - Category
+  /works:
+    get:
+      summary: 作品一覧
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Work'
+      operationId: getWorks
+      description: 作品一覧を取得
+      tags:
+        - Work
+    parameters: []
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1
@@ -363,7 +381,7 @@ components:
         ancestry:
           type: string
           nullable: true
-        number_of_products:
+        number_of_works:
           type: integer
         created_at:
           type: string
@@ -376,10 +394,200 @@ components:
         - id
         - name
         - ancestry
-        - number_of_products
+        - number_of_works
         - created_at
         - updated_at
         - deleted_at
+    Work:
+      title: Work
+      type: object
+      description: 作品情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        image_files:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageFile'
+        number_of_favorites:
+          type: integer
+        author:
+          $ref: '#/components/schemas/Author'
+        creators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Creator'
+        category:
+          $ref: '#/components/schemas/Category'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+          nullable: true
+      required:
+        - id
+        - name
+        - description
+        - image_files
+        - number_of_favorites
+        - author
+        - creators
+        - category
+        - created_at
+        - updated_at
+        - deleted_at
+    ImageFile:
+      title: ImageFile
+      type: object
+      description: 作品イメージ情報
+      properties:
+        id:
+          type: integer
+        sequence:
+          type: integer
+        file_type:
+          type: integer
+        image_url:
+          type: string
+        video_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+      required:
+        - id
+        - sequence
+        - file_type
+        - created_at
+        - updated_at
+        - deleted_at
+    Tag:
+      title: Tag
+      type: object
+      description: 作品タグ情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        author:
+          $ref: '#/components/schemas/Author'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+      required:
+        - id
+        - name
+        - author
+        - created_at
+        - updated_at
+        - deleted_at
+    Asset:
+      title: Asset
+      type: object
+      description: 作品アセット情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        url:
+          type: string
+        image_url:
+          type: string
+        author:
+          $ref: '#/components/schemas/Author'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+      required:
+        - id
+        - name
+        - url
+        - image_url
+        - author
+        - created_at
+        - updated_at
+        - deleted_at
+    Creator:
+      title: Creator
+      type: object
+      description: クリエイター情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        thumb_image_url:
+          type: string
+      required:
+        - id
+        - name
+        - thumb_image_url
+    Social:
+      title: Social
+      type: object
+      description: ユーザーSNS情報
+      properties:
+        id:
+          type: string
+        twitter_id:
+          type: string
+        youtube_url:
+          type: string
+        instagram_url:
+          type: string
+        facebook_url:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+      required:
+        - id
+        - created_at
+        - updated_at
+        - deleted_at
+    Author:
+      title: Author
+      type: object
+      description: 登録者情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        thumb_image_url:
+          type: string
+      required:
+        - id
+        - name
+        - thumb_image_url
   parameters: {}
   examples: {}
   responses: {}
