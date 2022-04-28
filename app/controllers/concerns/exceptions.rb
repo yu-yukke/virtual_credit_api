@@ -14,25 +14,25 @@ module Exceptions
     rescue_from Exception, with: :rescue500
 
     def rescue500(e)
-      render json: "サーバーエラーが発生しました。", status: 500
+      render json: { error: "予期せぬエラーが発生しました。" }, status: 500
 
       Rails.logger.error e
     end
 
     def rescue403(e)
-      render json: "指定のページへはアクセスできません・", status: 403
+      render json: { error: "指定のページへはアクセスできません。" }, status: 403
 
       Rails.logger.error e
     end
 
     def not_found(e)
-      render json: "対象のレコードが存在しません。", status: 404
+      render json: { error: "対象のレコードが存在しません。" }, status: 404
 
       Rails.logger.error e
     end
 
     def rescue404(e)
-      render json: "ページが存在しません。", status: 404
+      render json: { error: "ページが存在しません。" }, status: 404
 
       Rails.logger.error e
     end
