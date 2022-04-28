@@ -28,15 +28,15 @@ class Api::V1::JobsController < ApplicationController
   end
 
   def destroy
-    begin
-      if @job.destroy
-        render json: {}, status: 204
-      else
-        render json: { errors: @job.errors.full_messages }, status: 422
-      end
-    rescue => e
-      render json: { error: '子を持つ親カテゴリーは削除できません。' }, status: 400
+    if @job.destroy
+      render json: {}, status: 204
+    else
+      render json: { errors: @job.errors.full_messages }, status: 422
     end
+  rescue => e
+    render json: { error: "子を持つ親カテゴリーは削除できません。" }, status: 400
+
+    Rails.logger.error e
   end
 
   private

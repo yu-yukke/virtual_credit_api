@@ -292,7 +292,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
       it_behaves_like "return 204 no content"
 
       it "is expected to delete job" do
-        expect { subject }.to change(Job, :count).by -1
+        expect { subject }.to change(Job, :count).by(-1)
         expect(parent_job.reload.deleted_at).to be_present
 
         assert_response_schema_confirm 204
