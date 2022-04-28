@@ -283,6 +283,39 @@ paths:
                 - name
       tags:
         - Category
+    delete:
+      summary: カテゴリを削除
+      operationId: deleteCategory
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                required:
+                  - errors
+      description: カテゴリを削除
+      tags:
+        - Category
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1

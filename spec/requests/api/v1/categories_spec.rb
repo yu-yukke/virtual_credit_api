@@ -317,4 +317,34 @@ RSpec.describe "Api::V1::Categories", type: :request do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    let!(:parent_category) { FactoryBot.create(:category) }
+
+    subject { delete api_v1_category_path(parent_category) }
+
+    context "when parent has no children" do
+      it_behaves_like "return 204 no content"
+
+      it "is expected to delete category" do
+        expect { subject }.to change(Category, :count).by(-1)
+        expect(parent_category.reload.deleted_at).to be_present
+
+        assert_response_schema_confirm 204
+      end
+    end
+
+    context "when parent has children" do
+      before { FactoryBot.create(:category, ancestry: parent_category.id.to_s) }
+
+      it_behaves_like "return 400 bad request"
+
+      it "is expected to delete category" do
+        expect { subject }.not_to change(Category, :count)
+        expect(parent_category.reload.deleted_at).not_to be_present
+
+        assert_response_schema_confirm 400
+      end
+    end
+  end
 end
