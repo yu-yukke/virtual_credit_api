@@ -17,9 +17,9 @@
 #  index_tag_mappings_on_tag_id      (tag_id)
 #  index_tag_mappings_on_work_id     (work_id)
 #
-class TagMapping < ApplicationRecord
-  acts_as_paranoid
-
-  belongs_to :work
-  belongs_to :tag
+FactoryBot.define do
+  factory :tag_mapping do
+    association :tag
+    association :work
+  end
 end

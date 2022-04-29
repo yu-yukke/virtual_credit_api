@@ -27,13 +27,13 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "asset_mappings", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "asset_id", null: false
-    t.bigint "product_id", null: false
+    t.bigint "work_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["asset_id"], name: "index_asset_mappings_on_asset_id"
     t.index ["deleted_at"], name: "index_asset_mappings_on_deleted_at"
-    t.index ["product_id"], name: "index_asset_mappings_on_product_id"
+    t.index ["work_id"], name: "index_asset_mappings_on_work_id"
   end
 
   create_table "assets", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
@@ -59,38 +59,38 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "creator_mappings", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "product_id", null: false
+    t.bigint "work_id", null: false
     t.boolean "is_author", default: false, null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_creator_mappings_on_deleted_at"
-    t.index ["product_id"], name: "index_creator_mappings_on_product_id"
     t.index ["user_id"], name: "index_creator_mappings_on_user_id"
+    t.index ["work_id"], name: "index_creator_mappings_on_work_id"
   end
 
   create_table "favorites", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "product_id", null: false
+    t.bigint "work_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_favorites_on_deleted_at"
-    t.index ["product_id"], name: "index_favorites_on_product_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.index ["work_id"], name: "index_favorites_on_work_id"
   end
 
   create_table "image_files", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.bigint "product_id", null: false
+    t.bigint "work_id", null: false
     t.integer "sequence", null: false
     t.integer "file_type", default: 0, null: false
-    t.string "video_id", limit: 191
     t.string "image_url"
+    t.string "video_url"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_image_files_on_deleted_at"
-    t.index ["product_id"], name: "index_image_files_on_product_id"
+    t.index ["work_id"], name: "index_image_files_on_work_id"
   end
 
   create_table "inquiries", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
@@ -144,17 +144,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["deleted_at"], name: "index_notifications_on_deleted_at"
   end
 
-  create_table "products", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.bigint "category_id", null: false
-    t.string "name", limit: 191, null: false
-    t.text "description", null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["deleted_at"], name: "index_products_on_deleted_at"
-  end
-
   create_table "release_notes", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.decimal "version", precision: 10, null: false
     t.string "subject", limit: 191, null: false
@@ -169,9 +158,9 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "socials", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "twitter_id", limit: 191
-    t.string "youtube_id", limit: 191
-    t.string "instagram_id", limit: 191
-    t.string "facebook_id", limit: 191
+    t.string "youtube_url", limit: 191
+    t.string "instagram_url", limit: 191
+    t.string "facebook_url", limit: 191
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -180,14 +169,14 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "tag_mappings", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.bigint "product_id", null: false
+    t.bigint "work_id", null: false
     t.bigint "tag_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_tag_mappings_on_deleted_at"
-    t.index ["product_id"], name: "index_tag_mappings_on_product_id"
     t.index ["tag_id"], name: "index_tag_mappings_on_tag_id"
+    t.index ["work_id"], name: "index_tag_mappings_on_work_id"
   end
 
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
@@ -224,6 +213,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
+  end
+
+  create_table "works", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.string "name", limit: 191, null: false
+    t.text "description", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["category_id"], name: "index_works_on_category_id"
+    t.index ["deleted_at"], name: "index_works_on_deleted_at"
   end
 
 end

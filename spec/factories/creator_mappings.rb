@@ -18,9 +18,15 @@
 #  index_creator_mappings_on_user_id     (user_id)
 #  index_creator_mappings_on_work_id     (work_id)
 #
-class CreatorMapping < ApplicationRecord
-  acts_as_paranoid
+FactoryBot.define do
+  factory :creator_mapping do
+    is_author { false }
 
-  belongs_to :user
-  belongs_to :work
+    association :user
+    association :work
+
+    trait :author do
+      is_author { true }
+    end
+  end
 end

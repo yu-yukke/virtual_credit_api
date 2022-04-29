@@ -1,6 +1,6 @@
-index_key  = 'index_products_on_'
+index_key  = 'index_works_on_'
 
-create_table 'products', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+create_table 'works', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
   # =========================================
   # 親
   # =========================================

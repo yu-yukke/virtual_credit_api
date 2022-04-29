@@ -19,8 +19,8 @@ create_table 'favorites', id: :bigint, force: :cascade, charset: 'utf8mb4', coll
   t.index   'user_id',              name: "#{index_key}user_id"
 
   # 作品ID
-  t.bigint  'product_id',           null: false
-  t.index   'product_id',           name: "#{index_key}product_id"
+  t.bigint  'work_id',              null: false
+  t.index   'work_id',              name: "#{index_key}work_id"
 
   # =========================================
   # カラム

@@ -19,8 +19,8 @@ create_table 'asset_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4',
   t.index   'asset_id',             name: "#{index_key}asset_id"
 
   # 作品ID
-  t.bigint  'product_id',           null: false
-  t.index   'product_id',           name: "#{index_key}product_id"
+  t.bigint  'work_id',              null: false
+  t.index   'work_id',              name: "#{index_key}work_id"
 
   # =========================================
   # カラム

@@ -24,13 +24,13 @@ class User < ApplicationRecord
   has_one :social, dependent: :destroy
 
   has_many :favorites, dependent: :destroy
-  has_many :favorite_products, through: :favorites, source: :product
+  has_many :favorite_works, through: :favorites, source: :work
 
   has_many :job_mappings, dependent: :destroy
   has_many :jobs, through: :job_mappings
 
   has_many :creator_mappings, dependent: :destroy
-  has_many :products, through: :creator_mappings
+  has_many :works, through: :creator_mappings
 
   has_many :tags
   has_many :assets

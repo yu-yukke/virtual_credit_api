@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: products
+# Table name: works
 #
 #  id          :bigint           not null, primary key
 #  category_id :bigint           not null
@@ -14,13 +14,16 @@
 #
 # Indexes
 #
-#  index_products_on_category_id  (category_id)
-#  index_products_on_deleted_at   (deleted_at)
+#  index_works_on_category_id  (category_id)
+#  index_works_on_deleted_at   (deleted_at)
 #
-class Product < ApplicationRecord
+class Work < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :category
+
+  has_one :author_mapping, -> { where(is_author: true) }, class_name: "CreatorMapping"
+  has_one :author, through: :author_mapping, source: :user
 
   has_many :image_files, dependent: :destroy
 
@@ -35,4 +38,7 @@ class Product < ApplicationRecord
 
   has_many :asset_mappings, dependent: :destroy
   has_many :assets, through: :asset_mappings
+
+  validates :name, presence: true
+  validates :description, presence: true
 end

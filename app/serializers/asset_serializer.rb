@@ -18,11 +18,8 @@
 #  index_assets_on_deleted_at  (deleted_at)
 #  index_assets_on_user_id     (user_id)
 #
-class Asset < ApplicationRecord
-  acts_as_paranoid
+class AssetSerializer < ApplicationSerializer
+  attributes :id, :name, :url, :image_url
 
-  belongs_to :author, class_name: "User", foreign_key: "user_id"
-
-  has_many :asset_mappings, dependent: :destroy
-  has_many :works, through: :asset_mappings
+  belongs_to :author, serializer: AuthorSerializer
 end

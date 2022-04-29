@@ -16,11 +16,8 @@
 #  index_tags_on_deleted_at  (deleted_at)
 #  index_tags_on_user_id     (user_id)
 #
-class Tag < ApplicationRecord
-  acts_as_paranoid
+class TagSerializer < ApplicationSerializer
+  attributes :id, :name
 
-  belongs_to :author, class_name: "User", foreign_key: "user_id"
-
-  has_many :tag_mappings, dependent: :destroy
-  has_many :works, through: :tag_mappings
+  belongs_to :author, serializer: AuthorSerializer
 end

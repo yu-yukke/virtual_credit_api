@@ -18,11 +18,13 @@
 #  index_assets_on_deleted_at  (deleted_at)
 #  index_assets_on_user_id     (user_id)
 #
-class Asset < ApplicationRecord
-  acts_as_paranoid
 
-  belongs_to :author, class_name: "User", foreign_key: "user_id"
+FactoryBot.define do
+  factory :asset do
+    name { Faker::Name.name }
+    url { Faker::Internet.url }
+    image_url { Faker::Internet.url }
 
-  has_many :asset_mappings, dependent: :destroy
-  has_many :works, through: :asset_mappings
+    association :author, factory: :user
+  end
 end

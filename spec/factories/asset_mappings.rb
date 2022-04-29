@@ -17,9 +17,9 @@
 #  index_asset_mappings_on_deleted_at  (deleted_at)
 #  index_asset_mappings_on_work_id     (work_id)
 #
-class AssetMapping < ApplicationRecord
-  acts_as_paranoid
-
-  belongs_to :asset
-  belongs_to :work
+FactoryBot.define do
+  factory :asset_mapping do
+    association :asset
+    association :work
+  end
 end
