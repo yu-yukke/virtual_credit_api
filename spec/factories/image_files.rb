@@ -19,13 +19,12 @@
 #  index_image_files_on_deleted_at  (deleted_at)
 #  index_image_files_on_work_id     (work_id)
 #
-class ImageFile < ApplicationRecord
-  acts_as_paranoid
 
-  enum file_type: {
-    image: 0,
-    video: 10
-  }.freeze
-
-  belongs_to :work
+FactoryBot.define do
+  factory :image_file do
+    sequence(:sequence) { |n| n }
+    file_type { "image" }
+    image_url { Faker::Internet.url }
+    video_url { Faker::Internet.url }
+  end
 end

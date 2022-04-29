@@ -4,15 +4,15 @@
 #
 # Table name: socials
 #
-#  id           :bigint           not null, primary key
-#  user_id      :bigint           not null
-#  twitter_id   :string(191)
-#  youtube_id   :string(191)
-#  instagram_id :string(191)
-#  facebook_id  :string(191)
-#  deleted_at   :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id            :bigint           not null, primary key
+#  user_id       :bigint           not null
+#  twitter_id    :string(191)
+#  youtube_url   :string(191)
+#  instagram_url :string(191)
+#  facebook_url  :string(191)
+#  deleted_at    :datetime
+#  created_at    :datetime
+#  updated_at    :datetime
 #
 # Indexes
 #

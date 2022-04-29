@@ -28,15 +28,15 @@ create_table 'socials', id: :bigint, force: :cascade, charset: 'utf8mb4', collat
                                     limit: 191
 
   # youtube
-  t.string  'youtube_id',           null: true,
+  t.string  'youtube_url',          null: true,
                                     limit: 191
 
   # instagram
-  t.string  'instagram_id',         null: true,
+  t.string  'instagram_url',        null: true,
                                     limit: 191
 
   # facebook
-  t.string  'facebook_id',          null: true,
+  t.string  'facebook_url',         null: true,
                                     limit: 191
 
   # =========================================

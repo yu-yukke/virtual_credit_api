@@ -6,7 +6,7 @@ class Api::V1::CategoriesController < ApplicationController
   def index
     categories = Category.all
 
-    render json: categories, each_serializer: CategorySerializer
+    render json: categories, each_serializer: CategorySerializer, status: 200
   end
 
   def show

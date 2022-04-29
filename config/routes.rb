@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
       # カテゴリ
       resources :categories
+
+      # 作品
+      resources :works
     end
   end
 end

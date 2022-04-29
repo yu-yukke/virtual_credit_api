@@ -34,9 +34,7 @@ end
 10.times do |n|
   user = User.new(
     name: "テストユーザー_#{n}",
-    description: "テスト概要\r\nテスト概要\r\nテスト概要",
-    main_image_url: "",
-    thumb_image_url: ""
+    description: "テスト概要\r\nテスト概要\r\nテスト概要"
   )
 
   # ユーザーログイン
@@ -94,8 +92,7 @@ end
   5.times do |m|
     work.image_files.new(
       sequence: m + 1,
-      image_url: "hogehoge",
-      video_id: ""
+      image_url: "hogehoge"
     )
   end
 

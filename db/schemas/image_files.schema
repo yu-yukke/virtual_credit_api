@@ -28,15 +28,14 @@ create_table 'image_files', id: :bigint, force: :cascade, charset: 'utf8mb4', co
   t.integer  'file_type',           null: false,
                                     default: 0
 
-  # ビデオID
-  t.string  'video_id',             null: true,
-                                    limit: 191
-
   # =========================================
   # 画像
   # =========================================
   # 画像URL
   t.string  'image_url',            null: true
+
+  # ビデオURL
+  t.string  'video_url',            null: true
 
   # =========================================
   # 論理削除

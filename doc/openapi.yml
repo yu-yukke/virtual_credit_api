@@ -340,20 +340,21 @@ servers:
 components:
   securitySchemes: {}
   schemas:
-    Job:
-      title: Job
+    Asset:
+      title: Asset
       type: object
-      description: ジョブ情報
+      description: 作品アセット情報
       properties:
         id:
           type: integer
         name:
           type: string
-        ancestry:
+        url:
           type: string
-          nullable: true
-        number_of_users:
-          type: integer
+        image_url:
+          type: string
+        author:
+          $ref: '#/components/schemas/Author'
         created_at:
           type: string
         updated_at:
@@ -364,11 +365,27 @@ components:
       required:
         - id
         - name
-        - ancestry
-        - number_of_users
+        - url
+        - image_url
+        - author
         - created_at
         - updated_at
         - deleted_at
+    Author:
+      title: Author
+      type: object
+      description: 登録者情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        thumb_image_url:
+          type: string
+      required:
+        - id
+        - name
+        - thumb_image_url
     Category:
       title: Category
       type: object
@@ -398,58 +415,21 @@ components:
         - created_at
         - updated_at
         - deleted_at
-    Work:
-      title: Work
+    Creator:
+      title: Creator
       type: object
-      description: 作品情報
+      description: クリエイター情報
       properties:
         id:
           type: integer
         name:
           type: string
-        description:
+        thumb_image_url:
           type: string
-        image_files:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImageFile'
-        number_of_favorites:
-          type: integer
-        author:
-          $ref: '#/components/schemas/Author'
-        creators:
-          type: array
-          items:
-            $ref: '#/components/schemas/Creator'
-        category:
-          $ref: '#/components/schemas/Category'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        deleted_at:
-          type: string
-          nullable: true
       required:
         - id
         - name
-        - description
-        - image_files
-        - number_of_favorites
-        - author
-        - creators
-        - category
-        - created_at
-        - updated_at
-        - deleted_at
+        - thumb_image_url
     ImageFile:
       title: ImageFile
       type: object
@@ -471,6 +451,7 @@ components:
           type: string
         deleted_at:
           type: string
+          nullable: true
       required:
         - id
         - sequence
@@ -478,75 +459,35 @@ components:
         - created_at
         - updated_at
         - deleted_at
-    Tag:
-      title: Tag
+    Job:
+      title: Job
       type: object
-      description: 作品タグ情報
+      description: ジョブ情報
       properties:
         id:
           type: integer
         name:
           type: string
-        author:
-          $ref: '#/components/schemas/Author'
+        ancestry:
+          type: string
+          nullable: true
+        number_of_users:
+          type: integer
         created_at:
           type: string
         updated_at:
           type: string
         deleted_at:
           type: string
+          nullable: true
       required:
         - id
         - name
-        - author
+        - ancestry
+        - number_of_users
         - created_at
         - updated_at
         - deleted_at
-    Asset:
-      title: Asset
-      type: object
-      description: 作品アセット情報
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        url:
-          type: string
-        image_url:
-          type: string
-        author:
-          $ref: '#/components/schemas/Author'
-        created_at:
-          type: string
-        updated_at:
-          type: string
-        deleted_at:
-          type: string
-      required:
-        - id
-        - name
-        - url
-        - image_url
-        - author
-        - created_at
-        - updated_at
-        - deleted_at
-    Creator:
-      title: Creator
-      type: object
-      description: クリエイター情報
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        thumb_image_url:
-          type: string
-      required:
-        - id
-        - name
-        - thumb_image_url
     Social:
       title: Social
       type: object
@@ -568,26 +509,89 @@ components:
           type: string
         deleted_at:
           type: string
+          nullable: true
       required:
         - id
         - created_at
         - updated_at
         - deleted_at
-    Author:
-      title: Author
+    Tag:
+      title: Tag
       type: object
-      description: 登録者情報
+      description: 作品タグ情報
       properties:
         id:
           type: integer
         name:
           type: string
-        thumb_image_url:
+        author:
+          $ref: '#/components/schemas/Author'
+        created_at:
           type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+          nullable: true
       required:
         - id
         - name
-        - thumb_image_url
+        - author
+        - created_at
+        - updated_at
+        - deleted_at
+    Work:
+      title: Work
+      type: object
+      description: 作品情報
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        number_of_favorites:
+          type: integer
+        category:
+          $ref: '#/components/schemas/Category'
+        image_files:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageFile'
+        author:
+          $ref: '#/components/schemas/Author'
+        creators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Creator'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+          nullable: true
+      required:
+        - id
+        - name
+        - description
+        - number_of_favorites
+        - category
+        - image_files
+        - author
+        - creators
+        - created_at
+        - updated_at
+        - deleted_at
   parameters: {}
   examples: {}
   responses: {}

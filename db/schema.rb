@@ -84,8 +84,8 @@ ActiveRecord::Schema.define(version: 0) do
     t.bigint "work_id", null: false
     t.integer "sequence", null: false
     t.integer "file_type", default: 0, null: false
-    t.string "video_id", limit: 191
     t.string "image_url"
+    t.string "video_url"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -158,9 +158,9 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "socials", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "twitter_id", limit: 191
-    t.string "youtube_id", limit: 191
-    t.string "instagram_id", limit: 191
-    t.string "facebook_id", limit: 191
+    t.string "youtube_url", limit: 191
+    t.string "instagram_url", limit: 191
+    t.string "facebook_url", limit: 191
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

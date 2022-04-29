@@ -19,13 +19,6 @@
 #  index_image_files_on_deleted_at  (deleted_at)
 #  index_image_files_on_work_id     (work_id)
 #
-class ImageFile < ApplicationRecord
-  acts_as_paranoid
-
-  enum file_type: {
-    image: 0,
-    video: 10
-  }.freeze
-
-  belongs_to :work
+class ImageFileSerializer < ApplicationSerializer
+  attributes :id, :sequence, :file_type, :image_url, :video_id
 end

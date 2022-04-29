@@ -22,6 +22,9 @@ class Work < ApplicationRecord
 
   belongs_to :category
 
+  has_one :author_mapping, -> { where(is_author: true) }, class_name: "CreatorMapping"
+  has_one :author, through: :author_mapping, source: :user
+
   has_many :image_files, dependent: :destroy
 
   has_many :favorites, dependent: :destroy
@@ -35,4 +38,7 @@ class Work < ApplicationRecord
 
   has_many :asset_mappings, dependent: :destroy
   has_many :assets, through: :asset_mappings
+
+  validates :name, presence: true
+  validates :description, presence: true
 end
