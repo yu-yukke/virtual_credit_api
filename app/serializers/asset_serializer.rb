@@ -20,4 +20,6 @@
 #
 class AssetSerializer < ApplicationSerializer
   attributes :id, :name, :url, :image_url
+
+  belongs_to :author, serializer: AuthorSerializer
 end

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :inquiry do
-    inquiry_type { "inquire" }
+    inquiry_type { 0 }
     text { Faker::Lorem.paragraph }
 
     association :user

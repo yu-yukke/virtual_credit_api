@@ -19,7 +19,7 @@
 #  index_creator_mappings_on_work_id     (work_id)
 #
 FactoryBot.define do
-  factory :creator_mappings do
+  factory :creator_mapping do
     is_author { false }
 
     association :user

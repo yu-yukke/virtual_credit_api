@@ -21,7 +21,7 @@
 class Asset < ApplicationRecord
   acts_as_paranoid
 
-  belongs_to :user
+  belongs_to :author, class_name: "User", foreign_key: "user_id"
 
   has_many :asset_mappings, dependent: :destroy
   has_many :works, through: :asset_mappings

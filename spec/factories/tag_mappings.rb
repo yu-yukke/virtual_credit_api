@@ -18,7 +18,7 @@
 #  index_tag_mappings_on_work_id     (work_id)
 #
 FactoryBot.define do
-  factory :tag_mappings do
+  factory :tag_mapping do
     association :tag
     association :work
   end

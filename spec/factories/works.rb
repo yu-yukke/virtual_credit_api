@@ -23,5 +23,14 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph }
 
     association :category
+
+    after(:create) do |work|
+      FactoryBot.create(:creator_mapping, :author, work: work) # author
+      FactoryBot.create(:creator_mapping, work: work)
+
+      FactoryBot.create_list(:image_file, 5, work: work)
+      FactoryBot.create_list(:tag_mapping, 5, work: work)
+      FactoryBot.create_list(:asset_mapping, 5, work: work)
+    end
   end
 end

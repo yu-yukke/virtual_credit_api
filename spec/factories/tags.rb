@@ -20,5 +20,7 @@
 FactoryBot.define do
   factory :tag do
     name { Faker::Name.name }
+
+    association :author, factory: :user
   end
 end

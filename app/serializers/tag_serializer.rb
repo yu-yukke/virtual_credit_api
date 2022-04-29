@@ -18,4 +18,6 @@
 #
 class TagSerializer < ApplicationSerializer
   attributes :id, :name
+
+  belongs_to :author, serializer: AuthorSerializer
 end

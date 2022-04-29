@@ -18,7 +18,7 @@
 #  index_asset_mappings_on_work_id     (work_id)
 #
 FactoryBot.define do
-  factory :asset_mappings do
+  factory :asset_mapping do
     association :asset
     association :work
   end

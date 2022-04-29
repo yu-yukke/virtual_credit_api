@@ -18,7 +18,7 @@
 #  index_job_mappings_on_user_id     (user_id)
 #
 FactoryBot.define do
-  factory :job_mappings do
+  factory :job_mapping do
     association :job
     association :user
   end

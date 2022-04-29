@@ -22,7 +22,7 @@
 #  index_user_logins_on_user_id             (user_id) UNIQUE
 #
 FactoryBot.define do
-  factory :user_logins do
+  factory :user_login do
     email { Faker::Internet.email }
     password { Faker::Internet.password }
     last_logged_in_at { Faker::Time.backward(days: 7, period: :evening) }

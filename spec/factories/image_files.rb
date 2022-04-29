@@ -23,8 +23,10 @@
 FactoryBot.define do
   factory :image_file do
     sequence(:sequence) { |n| n }
-    file_type { "image" }
+    file_type { 0 }
     image_url { Faker::Internet.url }
     video_url { Faker::Internet.url }
+
+    association :work
   end
 end

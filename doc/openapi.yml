@@ -440,7 +440,7 @@ components:
         sequence:
           type: integer
         file_type:
-          type: integer
+          type: string
         image_url:
           type: string
         video_id:
