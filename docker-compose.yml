@@ -1,8 +1,9 @@
 version: '3'
+
 services:
   db:
     image: mysql:5.7
-    platform: linux/x86_64 
+    platform: linux/x86_64
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: virtual_credit_development
@@ -11,10 +12,12 @@ services:
       - '3307:3306'
     volumes:
       - ./tmp/db:/var/lib/mysql
+    networks:
+      - virtual_credit_common_network
 
   db_test:
     image: mysql:5.7
-    platform: linux/x86_64 
+    platform: linux/x86_64
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: virtual_credit_test
@@ -23,8 +26,10 @@ services:
       - '3308:3306'
     volumes:
       - ./tmp/db_test:/var/lib/mysql
+    networks:
+      - virtual_credit_common_network
 
-  app:
+  api:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 4000 -b '0.0.0.0'"
     volumes:
@@ -34,6 +39,8 @@ services:
     depends_on:
       - db
       - db_test
+    networks:
+      - virtual_credit_common_network
 
   doc:
     image: swaggerapi/swagger-ui
@@ -43,3 +50,7 @@ services:
       API_URL: openapi.yml
     ports:
       - 8080:8080
+
+networks:
+  virtual_credit_common_network:
+    external: true
