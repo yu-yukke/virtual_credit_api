@@ -35,27 +35,27 @@
 
 ### create database
 
-- `docker-compose exec app bundle exec rails db:create`
+- `docker-compose exec api bundle exec rails db:create`
 
 ### migration
 
-- `docker-compose exec app bundle exec rake ridge:migrate`
-- `docker-compose exec app bundle exec rake ridge:migrate RAILS_ENV='test'`
+- `docker-compose exec api bundle exec rake ridge:migrate`
+- `docker-compose exec api bundle exec rake ridge:migrate RAILS_ENV='test'`
 
 ### seed
 
-`docker-compose exec app bundle exec rails db:seed`
+`docker-compose exec api bundle exec rails db:seed`
 
 ## debug
 
 ### run spec
 
-`docker-compose exec app bundle exec rspec (path/to/spec_file)`
+`docker-compose exec api bundle exec rspec (path/to/spec_file)`
 
 ### run rubocop
 
-`docker-compose exec app bundle exec rubocop`
+`docker-compose exec api bundle exec rubocop`
 
 ## annotate
 
-`docker-compose exec app bundle exec annotate --models --show-indexes`
+`docker-compose exec api bundle exec annotate --models --show-indexes`
