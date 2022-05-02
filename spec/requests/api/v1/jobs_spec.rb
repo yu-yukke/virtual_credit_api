@@ -78,9 +78,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when name is nil" do
       let(:params) {
         {
-          job: {
-            name: nil
-          }
+          name: nil
         }
       }
 
@@ -96,9 +94,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when name is blank" do
       let(:params) {
         {
-          job: {
-            name: ""
-          }
+          name: ""
         }
       }
 
@@ -116,9 +112,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
 
       let(:params) {
         {
-          job: {
-            name: "TestJob"
-          }
+          name: "TestJob"
         }
       }
 
@@ -134,9 +128,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when name is present" do
       let(:params) {
         {
-          job: {
-            name: "TestJob"
-          }
+          name: "TestJob"
         }
       }
 
@@ -155,10 +147,8 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when ancestry is nil" do
       let(:params) {
         {
-          job: {
-            name: Faker::Name.name,
-            ancestry: nil
-          }
+          name: Faker::Name.name,
+          ancestry: nil
         }
       }
 
@@ -177,10 +167,8 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when ancestry is blank" do
       let(:params) {
         {
-          job: {
-            name: Faker::Name.name,
-            ancestry: ""
-          }
+          name: Faker::Name.name,
+          ancestry: ""
         }
       }
 
@@ -197,10 +185,8 @@ RSpec.describe "Api::V1::Jobs", type: :request do
       let!(:parent_job) { FactoryBot.create(:job) }
       let(:params) {
         {
-          job: {
-            name: Faker::Name.name,
-            ancestry: parent_job.id.to_s
-          }
+          name: Faker::Name.name,
+          ancestry: parent_job.id.to_s
         }
       }
 
@@ -219,10 +205,8 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when ancestry with no parent Job is present" do
       let(:params) {
         {
-          job: {
-            name: Faker::Name.name,
-            ancestry: "1"
-          }
+          name: Faker::Name.name,
+          ancestry: "1"
         }
       }
 
@@ -248,9 +232,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when name is nil" do
       let(:params) {
         {
-          job: {
-            name: nil
-          }
+          name: nil
         }
       }
 
@@ -266,9 +248,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when name is blank" do
       let(:params) {
         {
-          job: {
-            name: ""
-          }
+          name: ""
         }
       }
 
@@ -284,9 +264,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when name is duplicated" do
       let(:params) {
         {
-          job: {
-            name: "ParentJob"
-          }
+          name: "ParentJob"
         }
       }
 
@@ -302,9 +280,7 @@ RSpec.describe "Api::V1::Jobs", type: :request do
     context "when name is valid" do
       let(:params) {
         {
-          job: {
-            name: "NewName"
-          }
+          name: "NewName"
         }
       }
 

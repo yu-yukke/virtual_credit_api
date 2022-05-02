@@ -78,9 +78,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when name is nil" do
       let(:params) {
         {
-          category: {
-            name: nil
-          }
+          name: nil
         }
       }
 
@@ -96,9 +94,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when name is blank" do
       let(:params) {
         {
-          category: {
-            name: ""
-          }
+          name: ""
         }
       }
 
@@ -116,9 +112,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
 
       let(:params) {
         {
-          category: {
-            name: "TestCategory"
-          }
+          name: "TestCategory"
         }
       }
 
@@ -134,9 +128,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when name is present" do
       let(:params) {
         {
-          category: {
-            name: "TestCategory"
-          }
+          name: "TestCategory"
         }
       }
 
@@ -155,10 +147,8 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when ancestry is nil" do
       let(:params) {
         {
-          category: {
-            name: Faker::Name.name,
-            ancestry: nil
-          }
+          name: Faker::Name.name,
+          ancestry: nil
         }
       }
 
@@ -177,10 +167,8 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when ancestry is blank" do
       let(:params) {
         {
-          category: {
-            name: Faker::Name.name,
-            ancestry: ""
-          }
+          name: Faker::Name.name,
+          ancestry: ""
         }
       }
 
@@ -197,10 +185,8 @@ RSpec.describe "Api::V1::Categories", type: :request do
       let!(:parent_category) { FactoryBot.create(:category) }
       let(:params) {
         {
-          category: {
-            name: Faker::Name.name,
-            ancestry: parent_category.id.to_s
-          }
+          name: Faker::Name.name,
+          ancestry: parent_category.id.to_s
         }
       }
 
@@ -219,10 +205,8 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when ancestry with no parent category is present" do
       let(:params) {
         {
-          category: {
-            name: Faker::Name.name,
-            ancestry: "1"
-          }
+          name: Faker::Name.name,
+          ancestry: "1"
         }
       }
 
@@ -248,9 +232,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when name is nil" do
       let(:params) {
         {
-          category: {
-            name: nil
-          }
+          name: nil
         }
       }
 
@@ -266,9 +248,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when name is blank" do
       let(:params) {
         {
-          category: {
-            name: ""
-          }
+          name: ""
         }
       }
 
@@ -284,9 +264,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when name is duplicated" do
       let(:params) {
         {
-          category: {
-            name: "ParentCategory"
-          }
+          name: "ParentCategory"
         }
       }
 
@@ -302,9 +280,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
     context "when name is valid" do
       let(:params) {
         {
-          category: {
-            name: "NewName"
-          }
+          name: "NewName"
         }
       }
 
