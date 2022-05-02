@@ -10,6 +10,7 @@ tags:
   - name: Job
   - name: Category
   - name: Work
+  - name: ReleaseNote
 paths:
   /jobs:
     get:
@@ -334,6 +335,164 @@ paths:
       tags:
         - Work
     parameters: []
+  /release_notes:
+    get:
+      summary: リリースノート一覧
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReleaseNote'
+      operationId: getReleaseNotes
+      description: リリースノート一覧を取得
+      tags:
+        - ReleaseNote
+    post:
+      summary: リリースノート作成
+      operationId: postReleaseNote
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseNote'
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+      description: リリースノートを作成
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                version:
+                  type: number
+                subject:
+                  type: string
+                description:
+                  type: string
+                released_at:
+                  type: string
+              required:
+                - version
+                - subject
+                - description
+                - released_at
+      tags:
+        - ReleaseNote
+    parameters: []
+  '/release_notes/{release_note_id}':
+    parameters:
+      - schema:
+          type: string
+        name: release_note_id
+        in: path
+        required: true
+    get:
+      summary: リリースノート取得
+      tags:
+        - ReleaseNote
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseNote'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      operationId: getReleaseNote
+      description: リリースノート取得
+    patch:
+      summary: リリースノート更新
+      operationId: patchReleaseNote
+      responses:
+        '204':
+          description: No Content
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+      tags:
+        - ReleaseNote
+      description: リリースノート更新
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                version:
+                  type: number
+                subject:
+                  type: string
+                description:
+                  type: string
+                released_at:
+                  type: string
+              required:
+                - version
+                - subject
+                - description
+                - released_at
+        description: ''
+    delete:
+      summary: リリースノート削除
+      operationId: deleteReleaseNote
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '422':
+          description: Unprocessable Entity (WebDAV)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+      tags:
+        - ReleaseNote
+      description: リリースノート削除
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1
@@ -589,6 +748,37 @@ components:
         - image_files
         - author
         - creators
+        - created_at
+        - updated_at
+        - deleted_at
+    ReleaseNote:
+      title: ReleaseNote
+      type: object
+      description: リリースノート情報
+      properties:
+        id:
+          type: integer
+        version:
+          type: number
+        subject:
+          type: string
+        description:
+          type: string
+        released_at:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+          nullable: true
+      required:
+        - id
+        - version
+        - subject
+        - description
+        - released_at
         - created_at
         - updated_at
         - deleted_at
