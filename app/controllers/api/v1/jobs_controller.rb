@@ -49,14 +49,14 @@ class Api::V1::JobsController < ApplicationController
     end
 
     def job_params
-      params.require(:job).permit(
+      params.permit(
         :name,
         :ancestry
       )
     end
 
     def update_job_params
-      params.require(:job).permit(
+      params.permit(
         :name
       )
     end

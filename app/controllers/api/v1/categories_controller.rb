@@ -49,14 +49,14 @@ class Api::V1::CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(
+      params.permit(
         :name,
         :ancestry
       )
     end
 
     def update_category_params
-      params.require(:category).permit(
+      params.permit(
         :name
       )
     end
