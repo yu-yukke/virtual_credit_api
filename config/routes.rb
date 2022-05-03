@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
       # 作品
       resources :works
+
+      # リリースノート
+      resources :release_notes
     end
   end
 end
