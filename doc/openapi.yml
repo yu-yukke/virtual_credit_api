@@ -372,6 +372,8 @@ paths:
                     type: array
                     items:
                       type: string
+                required:
+                  - errors
       description: リリースノートを作成
       requestBody:
         content:
@@ -398,7 +400,7 @@ paths:
   '/release_notes/{release_note_id}':
     parameters:
       - schema:
-          type: string
+          type: integer
         name: release_note_id
         in: path
         required: true
@@ -422,6 +424,8 @@ paths:
                 properties:
                   error:
                     type: string
+                required:
+                  - error
       operationId: getReleaseNote
       description: リリースノート取得
     patch:
@@ -441,6 +445,8 @@ paths:
                     type: array
                     items:
                       type: string
+                required:
+                  - errors
       tags:
         - ReleaseNote
       description: リリースノート更新
@@ -479,6 +485,8 @@ paths:
                 properties:
                   error:
                     type: string
+                required:
+                  - error
         '422':
           description: Unprocessable Entity (WebDAV)
           content:
@@ -490,6 +498,8 @@ paths:
                     type: array
                     items:
                       type: string
+                required:
+                  - errors
       tags:
         - ReleaseNote
       description: リリースノート削除
