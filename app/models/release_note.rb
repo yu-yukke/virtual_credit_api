@@ -19,4 +19,12 @@
 #
 class ReleaseNote < ApplicationRecord
   acts_as_paranoid
+
+  validates :version, presence: true
+
+  validates :subject, presence: true
+
+  validates :description, presence: true
+
+  validates :released_at, presence: true
 end
