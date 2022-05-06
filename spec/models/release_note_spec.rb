@@ -25,5 +25,33 @@ RSpec.describe ReleaseNote, type: :model do
     it { should validate_presence_of(:subject) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:released_at) }
+
+    context "version_numericality" do
+      context "when version is not numeric" do
+        let(:release_note) { FactoryBot.build(:release_note, version: "TestVersion") }
+
+        it "is expected to validate that :version must be numeric" do
+          expect(release_note).not_to be_valid
+        end
+      end
+
+      context "when version is numeric" do
+        let(:release_note) { FactoryBot.build(:release_note, version: "1.1") }
+
+        it "is expected to be valid" do
+          expect(release_note).to be_valid
+        end
+      end
+    end
+
+    context "version_uniqueness" do
+      before { FactoryBot.create(:release_note, version: "1.1") }
+
+      let(:release_note) { FactoryBot.build(:release_note, version: "1.1") }
+
+      it "is expected to validate that :version cannot be duplicated" do
+        expect(release_note).not_to be_valid
+      end
+    end
   end
 end
