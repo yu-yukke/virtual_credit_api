@@ -20,7 +20,7 @@
 class ReleaseNote < ApplicationRecord
   acts_as_paranoid
 
-  validates :version, presence: true
+  validates :version, presence: true, uniqueness: true, numericality: true
 
   validates :subject, presence: true
 
