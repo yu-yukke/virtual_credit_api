@@ -17,11 +17,6 @@
 #
 #  index_release_notes_on_deleted_at  (deleted_at)
 #
-class ReleaseNote < ApplicationRecord
-  acts_as_paranoid
-
-  validates :version, presence: true, uniqueness: true, numericality: true
-  validates :subject, presence: true
-  validates :description, presence: true
-  validates :released_at, presence: true
+class ReleaseNoteSerializer < ApplicationSerializer
+  attributes :id, :version, :subject, :description, :released_at
 end
