@@ -35,6 +35,43 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
     end
   end
 
+  describe "GET #show" do
+    context "when release_note exists" do
+      subject { get api_v1_release_note_path(release_note) }
+
+      let(:release_note) { FactoryBot.create(:release_note) }
+
+      it_behaves_like "return 200 success"
+
+      it "is expected to return release_note" do
+        subject
+
+        json_body = JSON.parse(response.body)
+        expect(json_body["version"]).to eq release_note.version
+        expect(json_body["subject"]).to eq release_note.subject
+        expect(json_body["description"]).to eq release_note.description
+        expect(json_body["released_at"]).to eq release_note.released_at.iso8601(3)
+
+        assert_response_schema_confirm 200
+      end
+    end
+
+    context "when release_note does not exist" do
+      subject { get api_v1_release_note_path(10000000) }
+
+      it_behaves_like "return 404 not found"
+
+      it "is expected not to return release_note" do
+        subject
+
+        json_body = JSON.parse(response.body)
+        expect(json_body["error"]).to eq "対象のレコードが存在しません。"
+
+        assert_response_schema_confirm 404
+      end
+    end
+  end
+
   describe "POST #create" do
     subject {
       post api_v1_release_notes_path, params: params
