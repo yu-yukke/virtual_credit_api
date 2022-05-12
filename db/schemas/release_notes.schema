@@ -20,7 +20,7 @@ create_table 'release_notes', id: :bigint, force: :cascade, charset: 'utf8mb4', 
   # カラム
   # =========================================
   # バージョン
-  t.decimal  'version',             null: false
+  t.string  'version',             null: false
 
   # タイトル
   t.string  'subject',              null: false,
