@@ -299,12 +299,13 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
     end
 
     context "when released_at is present" do
+      let(:released_at) { "2022-05-08T00:00:00.000+09:00" }
       let(:params) {
         {
           version: "1.1",
           subject: Faker::Lorem.sentence,
           description: Faker::Lorem.paragraph,
-          released_at: "2022-05-08T00:00:00.000+09:00"
+          released_at: released_at
         }
       }
 
@@ -314,7 +315,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
         expect { subject }.to change(ReleaseNote, :count).by 1
 
         json_body = JSON.parse(response.body)
-        expect(json_body["released_at"]).to eq "2022-05-08T00:00:00.000+09:00"
+        expect(json_body["released_at"]).to eq released_at
 
         assert_response_schema_confirm 201
       end
