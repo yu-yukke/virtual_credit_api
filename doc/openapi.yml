@@ -382,7 +382,7 @@ paths:
               type: object
               properties:
                 version:
-                  type: number
+                  type: string
                 subject:
                   type: string
                 description:
@@ -457,7 +457,7 @@ paths:
               type: object
               properties:
                 version:
-                  type: number
+                  type: string
                 subject:
                   type: string
                 description:
@@ -769,7 +769,7 @@ components:
         id:
           type: integer
         version:
-          type: number
+          type: string
         subject:
           type: string
         description:

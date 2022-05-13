@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "release_notes", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
-    t.decimal "version", precision: 10, null: false
+    t.string "version", null: false
     t.string "subject", limit: 191, null: false
     t.text "description", null: false
     t.datetime "released_at", null: false

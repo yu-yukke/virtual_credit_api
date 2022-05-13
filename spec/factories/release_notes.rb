@@ -5,7 +5,7 @@
 # Table name: release_notes
 #
 #  id          :bigint           not null, primary key
-#  version     :decimal(10, )    not null
+#  version     :string(255)      not null
 #  subject     :string(191)      not null
 #  description :text(65535)      not null
 #  released_at :datetime         not null
