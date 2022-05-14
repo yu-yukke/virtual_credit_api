@@ -83,7 +83,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: nil,
           subject: Faker::Lorem.sentence,
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -102,7 +102,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "",
           subject: Faker::Lorem.sentence,
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -121,7 +121,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "TestVersion",
           subject: Faker::Lorem.sentence,
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -142,7 +142,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: Faker::Lorem.sentence,
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -161,7 +161,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: Faker::Lorem.sentence,
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -183,7 +183,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: nil,
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -202,7 +202,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: "",
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -221,7 +221,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: "TestSubject",
           description: Faker::Lorem.paragraph,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -243,7 +243,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: Faker::Lorem.sentence,
           description: nil,
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -262,7 +262,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: Faker::Lorem.sentence,
           description: "",
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 
@@ -281,7 +281,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
           version: "1.1",
           subject: Faker::Lorem.sentence,
           description: "TestDescription",
-          released_at: Faker::Time.backward(days: 7, period: :evening)
+          released_at: Time.zone.now
         }
       }
 

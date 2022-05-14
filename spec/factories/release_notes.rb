@@ -22,6 +22,6 @@ FactoryBot.define do
     sequence(:version) { |n| n }
     subject { Faker::Lorem.sentence }
     description { Faker::Lorem.paragraph }
-    released_at { Faker::Time.backward(days: 7, period: :evening) }
+    released_at { Time.zone.now }
   end
 end
