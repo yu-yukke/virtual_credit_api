@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 class Api::V1::ReleaseNotesController < ApplicationController
+  before_action :find_release_note, only: %i(show)
+
   def index
     release_notes = ReleaseNote.all
 
     render json: release_notes, each_serializer: ReleaseNoteSerializer, status: 200
+  end
+
+  def show
+    render json: @release_note, serializer: ReleaseNoteSerializer, status: 200
   end
 
   def create
@@ -18,6 +24,10 @@ class Api::V1::ReleaseNotesController < ApplicationController
   end
 
   private
+    def find_release_note
+      @release_note = ReleaseNote.find params[:id]
+    end
+
     def release_note_params
       params.permit(
         :version,
