@@ -358,4 +358,228 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
       end
     end
   end
+
+  describe "PATCH #update" do
+    let!(:release_note) {
+      FactoryBot.create(
+        :release_note,
+        version: "1.1",
+        released_at: DateTime.new(2022, 5, 9, 00, 00, 00, "+09:00")
+      )
+    }
+    let!(:release_note2) { FactoryBot.create(:release_note, version: "1.2") }
+
+    subject {
+      patch api_v1_release_note_path(release_note), params: params
+    }
+
+    context "when version is nil" do
+      let(:params) {
+        {
+          version: nil
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :version" do
+        expect { subject }.not_to change { release_note.reload.version }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when version is blank" do
+      let(:params) {
+        {
+          version: ""
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :version" do
+        expect { subject }.not_to change { release_note.reload.version }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when version is duplicated" do
+      let(:params) {
+        {
+          version: "1.2"
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :version" do
+        expect { subject }.not_to change { release_note.reload.version }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when version is valid" do
+      let(:params) {
+        {
+          version: "1.3"
+        }
+      }
+
+      it_behaves_like "return 204 no content"
+
+      it "is expected to change :version" do
+        expect { subject }.to change { release_note.reload.version }.to("1.3")
+
+        assert_response_schema_confirm 204
+      end
+    end
+
+    context "when subject is nil" do
+      let(:params) {
+        {
+          subject: nil
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :subject" do
+        expect { subject }.not_to change { release_note.reload.subject }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when subject is blank" do
+      let(:params) {
+        {
+          subject: ""
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :subject" do
+        expect { subject }.not_to change { release_note.reload.subject }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when subject is valid" do
+      let(:params) {
+        {
+          subject: "NewSubject"
+        }
+      }
+
+      it_behaves_like "return 204 no content"
+
+      it "is expected to change :subject" do
+        expect { subject }.to change { release_note.reload.subject }.to("NewSubject")
+
+        assert_response_schema_confirm 204
+      end
+    end
+
+    context "when description is nil" do
+      let(:params) {
+        {
+          description: nil
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :description" do
+        expect { subject }.not_to change { release_note.reload.description }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when description is blank" do
+      let(:params) {
+        {
+          description: ""
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :description" do
+        expect { subject }.not_to change { release_note.reload.description }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when description is valid" do
+      let(:params) {
+        {
+          description: "NewDescription"
+        }
+      }
+
+      it_behaves_like "return 204 no content"
+
+      it "is expected to change :description" do
+        expect { subject }.to change { release_note.reload.description }.to("NewDescription")
+
+        assert_response_schema_confirm 204
+      end
+    end
+
+    context "when released_at is nil" do
+      let(:params) {
+        {
+          released_at: nil
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :released_at" do
+        expect { subject }.not_to change { release_note.reload.released_at }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when released_at is blank" do
+      let(:params) {
+        {
+          released_at: ""
+        }
+      }
+
+      it_behaves_like "return 422 unprocessable entity"
+
+      it "is expected not to change :released_at" do
+        expect { subject }.not_to change { release_note.reload.released_at }
+
+        assert_response_schema_confirm 422
+      end
+    end
+
+    context "when released_at is valid" do
+      let(:released_at) { "2022-05-10T00:00:00.000+09:00" }
+      let(:params) {
+        {
+          released_at: released_at
+        }
+      }
+
+      it_behaves_like "return 204 no content"
+
+      it "is expected to change :released_at" do
+        expect { subject }.to change { release_note.reload.released_at.iso8601(3) }.to(released_at)
+
+        assert_response_schema_confirm 204
+      end
+    end
+  end
 end
