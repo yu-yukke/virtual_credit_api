@@ -360,8 +360,14 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
   end
 
   describe "PATCH #update" do
-    let!(:release_note) { FactoryBot.create(:release_note, version: "1.1", subject: "TestSubject", description: "TestDescription", released_at: "2022-05-08T00:00:00.000+09:00") }
-    let!(:release_note2) { FactoryBot.create(:release_note, version: "1.2", subject: "SubSubject", description: "SubDescription", released_at: "2022-05-09T00:00:00.000+09:00") }
+    let!(:release_note) {
+      FactoryBot.create(
+        :release_note,
+        version: "1.1",
+        released_at: DateTime.new(2022, 5, 9, 00, 00, 00, "+09:00")
+      )
+    }
+    let!(:release_note2) { FactoryBot.create(:release_note, version: "1.2") }
 
     subject {
       patch api_v1_release_note_path(release_note), params: params
