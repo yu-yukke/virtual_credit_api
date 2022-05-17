@@ -582,4 +582,19 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
       end
     end
   end
+
+  describe "DELETE #destroy" do
+    let!(:release_note) { FactoryBot.create(:release_note) }
+
+    subject { delete api_v1_release_note_path(release_note) }
+
+    it_behaves_like "return 204 no content"
+
+    it "is expected to delete release_note" do
+      expect { subject }.to change(ReleaseNote, :count).by(-1)
+      expect(release_note.reload.deleted_at).to be_present
+
+      assert_response_schema_confirm 204
+    end
+  end
 end
