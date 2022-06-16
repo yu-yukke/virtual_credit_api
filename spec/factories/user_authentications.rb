@@ -27,7 +27,7 @@
 #
 FactoryBot.define do
   factory :user_login do
-    provider { 'twitter' }
+    provider { "twitter" }
     uid { Faker::Number.number(digits: 10) }
     remember_created_at { Faker::Time.backward(days: 7, period: :evening) }
     sign_in_count { 0 }
