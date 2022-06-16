@@ -20,7 +20,7 @@
 class User < ApplicationRecord
   acts_as_paranoid
 
-  has_one :user_login, dependent: :destroy
+  has_one :user_authentication, dependent: :destroy
   has_one :social, dependent: :destroy
 
   has_many :favorites, dependent: :destroy

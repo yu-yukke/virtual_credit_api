@@ -1,7 +1,7 @@
 # ============= ユーザーサイト =============
 # ユーザー
 require 'users.schema'
-require 'user_logins.schema'
+require 'user_authentications.schema'
 require 'socials.schema'
 
 # ジョブ

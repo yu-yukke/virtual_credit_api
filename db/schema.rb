@@ -189,6 +189,25 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
+  create_table "user_authentications", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "provider", limit: 191, default: "email", null: false
+    t.string "uid", limit: 191, default: "", null: false
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.text "tokens"
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["deleted_at"], name: "index_user_auths_on_deleted_at"
+    t.index ["provider", "uid"], name: "index_user_auths_on_provider_uid_unique", unique: true
+    t.index ["user_id"], name: "index_user_auths_on_user_id", unique: true
+  end
+
   create_table "user_logins", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "email", limit: 191, null: false

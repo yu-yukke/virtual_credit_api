@@ -37,11 +37,17 @@ end
     description: "テスト概要\r\nテスト概要\r\nテスト概要"
   )
 
-  # ユーザーログイン
-  user.build_user_login(
-    email: "yukke5222@gmail.com",
-    password_digest: SecureRandom.hex(10),
-    last_logged_in_at: Time.zone.now
+  # ユーザーログイン（仮）
+  user.build_user_authentication(
+    provider { 'twitter' }
+    uid { Faker::Number.number(digits: 10) }
+    remember_created_at { Faker::Time.backward(days: 7, period: :evening) }
+    sign_in_count { 0 }
+    current_sign_in_at { Faker::Time.backward(days: 7, period: :evening) }
+    last_sign_in_at { Faker::Time.backward(days: 7, period: :evening) }
+    current_sign_in_ip { Faker::Internet.ip_v6_address }
+    last_sign_in_ip { Faker::Internet.ip_v6_address }
+    tokens { Faker::Lorem.characters }
   )
 
   # ソーシャル
