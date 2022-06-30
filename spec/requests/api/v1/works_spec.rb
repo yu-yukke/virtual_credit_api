@@ -34,4 +34,40 @@ RSpec.describe "Api::V1::Works", type: :request do
       end
     end
   end
+
+  describe "GET #show" do
+    context "when work exists" do
+      subject { get api_v1_work_path(work) }
+
+      let(:work) { FactoryBot.create(:work) }
+
+      it_behaves_like "return 200 success"
+
+      it "is expected to return work" do
+        subject
+
+        json_body = JSON.parse(response.body)
+        expect(json_body["name"]).to eq work.name
+        expect(json_body["description"]).to eq work.description
+        expect(json_body["number_of_favorites"]).to eq work.favorites.count
+
+        assert_response_schema_confirm 200
+      end
+    end
+
+    context "when work does not exist" do
+      subject { get api_v1_work_path(10000000) }
+
+      it_behaves_like "return 404 not found"
+
+      it "is expected not to return work" do
+        subject
+
+        json_body = JSON.parse(response.body)
+        expect(json_body["error"]).to eq "対象のレコードが存在しません。"
+
+        assert_response_schema_confirm 404
+      end
+    end
+  end
 end

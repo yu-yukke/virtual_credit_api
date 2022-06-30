@@ -503,6 +503,37 @@ paths:
       tags:
         - ReleaseNote
       description: リリースノート削除
+  '/works/{work_id}':
+    parameters:
+      - schema:
+          type: integer
+        name: work_id
+        in: path
+        required: true
+    get:
+      summary: 作品取得
+      tags:
+        - Work
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Work'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
+      operationId: getWork
+      description: ジョブを取得
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1
@@ -595,10 +626,23 @@ components:
           type: string
         thumb_image_url:
           type: string
+        is_author:
+          type: boolean
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+          nullable: true
       required:
         - id
         - name
         - thumb_image_url
+        - is_author
+        - created_at
+        - updated_at
+        - deleted_at
     ImageFile:
       title: ImageFile
       type: object
@@ -728,8 +772,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ImageFile'
-        author:
-          $ref: '#/components/schemas/Author'
         creators:
           type: array
           items:
@@ -756,7 +798,6 @@ components:
         - number_of_favorites
         - category
         - image_files
-        - author
         - creators
         - created_at
         - updated_at
