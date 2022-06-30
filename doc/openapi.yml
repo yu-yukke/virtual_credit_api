@@ -521,6 +521,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Work'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
       operationId: getWork
       description: ジョブを取得
 servers:
