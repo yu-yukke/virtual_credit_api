@@ -777,6 +777,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ImageFile'
+        author:
+          $ref: '#/components/schemas/Author'
         creators:
           type: array
           items:
