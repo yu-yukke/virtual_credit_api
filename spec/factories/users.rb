@@ -25,4 +25,12 @@ FactoryBot.define do
     main_image_url { Faker::Internet.url }
     thumb_image_url { Faker::Internet.url }
   end
+
+  after(:create) do |user|
+    if user.class.name == "User"
+      parent = Job.where(ancestry: nil).first || FactoryBot.create(:job)
+      child = Job.where.not(ancestry: nil).first || FactoryBot.create(:job, ancestry: parent.id.to_s)
+      FactoryBot.create(:job_mapping, user: user, job: child)
+    end
+  end
 end

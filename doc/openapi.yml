@@ -628,6 +628,10 @@ components:
           type: string
         is_author:
           type: boolean
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
         created_at:
           type: string
         updated_at:
@@ -640,6 +644,7 @@ components:
         - name
         - thumb_image_url
         - is_author
+        - jobs
         - created_at
         - updated_at
         - deleted_at
