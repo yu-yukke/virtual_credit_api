@@ -17,7 +17,7 @@
 #
 FactoryBot.define do
   factory :job do
-    name { Faker::Name.name }
+    name { Faker::Job.unique.title }
     ancestry { nil }
   end
 end

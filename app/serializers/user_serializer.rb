@@ -20,6 +20,8 @@
 class UserSerializer < ApplicationSerializer
   attributes :id, :name, :thumb_image_url, :is_author
 
+  has_many :jobs, each_serializer: JobSerializer
+
   def is_author
     object.creator_mappings.find_by(
       work_id: instance_options[:work_id]

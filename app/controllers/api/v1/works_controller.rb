@@ -5,7 +5,7 @@ class Api::V1::WorksController < ApplicationController
 
   def index
     works = Work.all.includes(
-      :category, :image_files, :creators, [tags: :author], [assets: :author]
+      :category, :image_files, [creators: :jobs], [tags: :author], [assets: :author]
     )
 
     render json: works, each_serializer: WorkSerializer, status: 200
@@ -18,7 +18,7 @@ class Api::V1::WorksController < ApplicationController
   private
     def find_work
       @work = Work.includes(
-        :category, :image_files, :creators, [tags: :author], [assets: :author]
+        :category, :image_files, [creators: :jobs], [tags: :author], [assets: :author]
       ).find params[:id]
     end
 end
