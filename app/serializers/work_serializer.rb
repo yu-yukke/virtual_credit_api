@@ -22,6 +22,8 @@ class WorkSerializer < ApplicationSerializer
 
   belongs_to :category, serializer: CategorySerializer
 
+  has_one :author, serializer: AuthorSerializer
+
   has_many :image_files, each_serializer: ImageFileSerializer
   has_many :tags, each_serializer: TagSerializer
   has_many :assets, each_serializer: AssetSerializer
