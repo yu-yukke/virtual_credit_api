@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       # 作品
       resources :works do
         resources :related_works, only: %i(index), module: :works
+        resources :other_works, only: %i(index), module: :works
       end
 
       # リリースノート

@@ -26,7 +26,7 @@ FactoryBot.define do
 
     after(:create) do |work|
       FactoryBot.create(:creator_mapping, :author, work: work) # author
-      FactoryBot.create(:creator_mapping, work: work)
+      FactoryBot.create_list(:creator_mapping, 3, work: work)
 
       FactoryBot.create_list(:image_file, 5, work: work)
       FactoryBot.create_list(:tag_mapping, 5, work: work)
