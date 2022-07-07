@@ -6,7 +6,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
   describe "GET #index" do
     subject { get api_v1_release_notes_path }
 
-    context "when no release_notes" do
+    context "when no release_notes exist" do
       it_behaves_like "return 200 success"
 
       it "is expected to return empty" do
@@ -19,7 +19,7 @@ RSpec.describe "Api::V1::ReleaseNotes", type: :request do
       end
     end
 
-    context "when 10 release_notes" do
+    context "when 10 release_notes exist" do
       before { FactoryBot.create_list(:release_note, 10) }
 
       it_behaves_like "return 200 success"
