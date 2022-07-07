@@ -534,6 +534,39 @@ paths:
                   - error
       operationId: getWork
       description: ジョブを取得
+  '/works/{work_id}/related_works':
+    parameters:
+      - schema:
+          type: integer
+        name: work_id
+        in: path
+        required: true
+    get:
+      summary: 関連作品取得
+      tags:
+        - Work
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Work'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
+      operationId: getRelatedWorks
+      description: 同一カテゴリの関連作品を取得
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1

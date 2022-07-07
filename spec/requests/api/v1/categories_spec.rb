@@ -6,7 +6,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
   describe "GET #index" do
     subject { get api_v1_categories_path }
 
-    context "when no categories" do
+    context "when no categories exist" do
       it_behaves_like "return 200 success"
 
       it "is expected to return empty" do
@@ -19,7 +19,7 @@ RSpec.describe "Api::V1::Categories", type: :request do
       end
     end
 
-    context "when 10 categories" do
+    context "when 10 categories exist" do
       before { FactoryBot.create_list(:category, 10) }
 
       it_behaves_like "return 200 success"

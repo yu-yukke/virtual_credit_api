@@ -20,7 +20,9 @@ Rails.application.routes.draw do
       resources :categories
 
       # 作品
-      resources :works
+      resources :works do
+        resources :related_works, only: %i(index), module: :works
+      end
 
       # リリースノート
       resources :release_notes
