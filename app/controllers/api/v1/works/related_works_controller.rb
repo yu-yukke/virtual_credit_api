@@ -9,7 +9,7 @@ class Api::V1::Works::RelatedWorksController < ApplicationController
     ).where.not(id: work.id)
     .sort_by { |work| work.favorites.count }
     .uniq
-    .take(15)
+    .take(5)
 
     if related_works.empty?
       render json: [], status: 200

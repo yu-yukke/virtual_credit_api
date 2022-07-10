@@ -39,31 +39,31 @@ RSpec.describe "Api::V1::Works::RelatedWorks", type: :request do
       end
     end
 
-    context "when 15 related works exist" do
+    context "when 5 related works exist" do
       before { FactoryBot.create_list(:work, 15, category: category) }
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 15 related works" do
+      it "is expected to return 5 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 15
+        expect(json_body.length).to eq 5
 
         assert_response_schema_confirm 200
       end
     end
 
-    context "when 16 related works exist" do
-      before { FactoryBot.create_list(:work, 16, category: category) }
+    context "when 6 related works exist" do
+      before { FactoryBot.create_list(:work, 6, category: category) }
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 15 related works" do
+      it "is expected to return 5 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 15
+        expect(json_body.length).to eq 5
 
         assert_response_schema_confirm 200
       end
