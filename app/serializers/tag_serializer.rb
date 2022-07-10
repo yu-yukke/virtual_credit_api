@@ -17,7 +17,11 @@
 #  index_tags_on_user_id     (user_id)
 #
 class TagSerializer < ApplicationSerializer
-  attributes :id, :name
+  attributes :id, :name, :number_of_works
 
   belongs_to :author, serializer: AuthorSerializer
+
+  def number_of_works
+    object.works.count
+  end
 end
