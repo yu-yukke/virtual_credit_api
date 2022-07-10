@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "Api::V1::Works::OtherWorks", type: :request do
+RSpec.describe "Api::V1::Works::CreatorsOtherWorks", type: :request do
   describe "GET #index" do
-    subject { get api_v1_work_other_works_path(work) }
+    subject { get api_v1_work_creators_other_works_path(work) }
 
     let(:work) { FactoryBot.create(:work) }
 

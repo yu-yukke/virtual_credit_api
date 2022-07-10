@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "Api::V1::Works::RelatedWorks", type: :request do
+RSpec.describe "Api::V1::Works::RelatedCategoryWorks", type: :request do
   describe "GET #index" do
-    subject { get api_v1_work_related_works_path(work) }
+    subject { get api_v1_work_related_category_works_path(work) }
 
     let(:parent_category) { FactoryBot.create(:category) }
     let(:category) { FactoryBot.create(:category, ancestry: parent_category.id.to_s) }

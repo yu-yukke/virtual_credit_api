@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Works::OtherWorksController < ApplicationController
+class Api::V1::Works::CreatorsOtherWorksController < ApplicationController
   def index
     work = Work.find_by id: params[:work_id]
     other_works = work.creators.includes(:jobs).map do |creator|

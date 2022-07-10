@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Works::RelatedWorksController < ApplicationController
+class Api::V1::Works::RelatedCategoryWorksController < ApplicationController
   def index
     work = Work.find_by id: params[:work_id]
     category = work.category
