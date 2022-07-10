@@ -20,7 +20,14 @@ RSpec.describe "Api::V1::Works", type: :request do
     end
 
     context "when 10 works exist" do
-      before { FactoryBot.create_list(:work, 10) }
+      before {
+        10.times do |n|
+          FactoryBot.create(:work)
+          FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
+        end
+      }
+
+      let(:user) { FactoryBot.create(:user) }
 
       it_behaves_like "return 200 success"
 
@@ -39,7 +46,12 @@ RSpec.describe "Api::V1::Works", type: :request do
     context "when work exists" do
       subject { get api_v1_work_path(work) }
 
+      before {
+        FactoryBot.create(:creator_mapping, :author, user: user, work: work)
+      }
+
       let(:work) { FactoryBot.create(:work) }
+      let(:user) { FactoryBot.create(:user) }
 
       it_behaves_like "return 200 success"
 

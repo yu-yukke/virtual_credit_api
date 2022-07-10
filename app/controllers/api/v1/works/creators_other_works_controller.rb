@@ -3,17 +3,21 @@
 class Api::V1::Works::CreatorsOtherWorksController < ApplicationController
   def index
     work = Work.find_by id: params[:work_id]
-    other_works = work.creators.includes(:jobs).map do |creator|
+    other_works = work.creators.map do |creator|
       creator.works.includes(
         :category, :author, :image_files, { creators: :jobs }, { tags: :author }, { assets: :author }
-      )
-    end.flatten.uniq
-    other_works.delete(work)
+      ).where.not(id: work.id)
+    end
+    .flatten
+    .uniq
+    .sort_by { |work| work.favorites.count }
+    .take(5)
+    # TODO: とりあえず5件にしてるけど増やす
 
-    render(
-      json: other_works.sort { |work| work.favorites.count }.first(15),
-      each_serializer: WorkSerializer,
-      status: 200
-    )
+    if other_works.empty?
+      render json: [], status: 200
+    else
+      render json: other_works, each_serializer: WorkSerializer, status: 200
+    end
   end
 end
