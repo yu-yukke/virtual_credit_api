@@ -21,7 +21,8 @@ Rails.application.routes.draw do
 
       # 作品
       resources :works do
-        resources :related_works, only: %i(index), module: :works
+        resources :related_category_works, only: %i(index), module: :works
+        resources :creators_other_works, only: %i(index), module: :works
       end
 
       # リリースノート

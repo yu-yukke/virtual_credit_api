@@ -534,7 +534,7 @@ paths:
                   - error
       operationId: getWork
       description: ジョブを取得
-  '/works/{work_id}/related_works':
+  '/works/{work_id}/related_category_works':
     parameters:
       - schema:
           type: integer
@@ -542,7 +542,7 @@ paths:
         in: path
         required: true
     get:
-      summary: 関連作品取得
+      summary: 同一カテゴリの他作品取得
       tags:
         - Work
       responses:
@@ -566,7 +566,40 @@ paths:
                 required:
                   - error
       operationId: getRelatedWorks
-      description: 同一カテゴリの関連作品を取得
+      description: 同一カテゴリの他の作品を取得
+  '/works/{work_id}/creators_other_works':
+    parameters:
+      - schema:
+          type: integer
+        name: work_id
+        in: path
+        required: true
+    get:
+      summary: クリエイターの他作品取得
+      tags:
+        - Work
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Work'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
+      operationId: getCreatorsOtherWorks
+      description: 登録クリエイターの他の作品を取得
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1
