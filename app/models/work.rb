@@ -4,13 +4,14 @@
 #
 # Table name: works
 #
-#  id          :bigint           not null, primary key
-#  category_id :bigint           not null
-#  name        :string(191)      not null
-#  description :text(65535)      not null
-#  deleted_at  :datetime
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id             :bigint           not null, primary key
+#  category_id    :bigint           not null
+#  name           :string(191)      not null
+#  description    :text(65535)      not null
+#  main_image_url :string(255)      not null
+#  deleted_at     :datetime
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 # Indexes
 #
@@ -41,4 +42,5 @@ class Work < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :main_image_url, presence: true
 end

@@ -31,7 +31,8 @@ create_table 'works', id: :bigint, force: :cascade, charset: 'utf8mb4', collatio
   # =========================================
   # 画像
   # =========================================
-  # なし
+  # メイン画像
+  t.string  'main_image_url',       null: false
 
   # =========================================
   # 論理削除

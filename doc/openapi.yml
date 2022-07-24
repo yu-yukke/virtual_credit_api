@@ -838,6 +838,8 @@ components:
           type: string
         description:
           type: string
+        main_image_url:
+          type: string
         number_of_favorites:
           type: integer
         category:
@@ -871,6 +873,7 @@ components:
         - id
         - name
         - description
+        - main_image_url
         - number_of_favorites
         - category
         - image_files
