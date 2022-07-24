@@ -4,13 +4,14 @@
 #
 # Table name: works
 #
-#  id          :bigint           not null, primary key
-#  category_id :bigint           not null
-#  name        :string(191)      not null
-#  description :text(65535)      not null
-#  deleted_at  :datetime
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id             :bigint           not null, primary key
+#  category_id    :bigint           not null
+#  name           :string(191)      not null
+#  description    :text(65535)      not null
+#  main_image_url :string(255)      not null
+#  deleted_at     :datetime
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 # Indexes
 #
@@ -40,5 +41,6 @@ RSpec.describe Work, type: :model do
   describe "validations" do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:main_image_url) }
   end
 end

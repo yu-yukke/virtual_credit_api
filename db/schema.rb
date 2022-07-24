@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.bigint "category_id", null: false
     t.string "name", limit: 191, null: false
     t.text "description", null: false
+    t.string "main_image_url", null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
