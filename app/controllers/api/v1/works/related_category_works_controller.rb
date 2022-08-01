@@ -4,8 +4,8 @@ class Api::V1::Works::RelatedCategoryWorksController < ApplicationController
   def index
     work = Work.find_by id: params[:work_id]
     category = work.category
-    related_works = category.works.includes(:image_files, :author, [creators: :jobs],
-      [tags: :author], [assets: :author]
+    related_works = category.works.includes(:image_files, :author, :link_in_bios,
+      [creators: :jobs], [tags: :author], [assets: :author]
     ).where.not(id: work.id)
     .sort_by { |work| work.favorites.count }
     .uniq

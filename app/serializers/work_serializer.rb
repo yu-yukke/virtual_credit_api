@@ -28,6 +28,7 @@ class WorkSerializer < ApplicationSerializer
   has_many :image_files, each_serializer: ImageFileSerializer
   has_many :tags, each_serializer: TagSerializer
   has_many :assets, each_serializer: AssetSerializer
+  has_many :link_in_bios, each_serializer: LinkInBioSerializer
 
   def creators
     ActiveModelSerializers::SerializableResource.new(
