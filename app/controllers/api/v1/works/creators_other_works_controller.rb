@@ -11,8 +11,8 @@ class Api::V1::Works::CreatorsOtherWorksController < ApplicationController
     .flatten
     .uniq
     .sort_by { |work| work.favorites.count }
-    .take(5)
-    # TODO: とりあえず5件にしてるけど増やす
+    .take(4)
+    # TODO: とりあえず4件にしてるけど増やす
 
     if other_works.empty?
       render json: [], status: 200
