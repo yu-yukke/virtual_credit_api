@@ -5,7 +5,7 @@ class Api::V1::WorksController < ApplicationController
 
   def index
     works = Work.all.includes(
-      :category, :image_files, :author, [creators: :jobs],
+      :category, :image_files, :author, :link_in_bios, [creators: :jobs],
       [tags: :author], [assets: :author]
     )
 
@@ -19,7 +19,8 @@ class Api::V1::WorksController < ApplicationController
   private
     def find_work
       @work = Work.includes(
-        :category, :image_files, [creators: :jobs], [tags: :author], [assets: :author]
+        :category, :image_files, :link_in_bios, [creators: :jobs],
+        [tags: :author], [assets: :author]
       ).find params[:id]
     end
 end

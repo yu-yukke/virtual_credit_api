@@ -28,11 +28,36 @@ RSpec.describe "Api::V1::Works::CreatorsOtherWorks", type: :request do
       end
     end
 
-    context "when creators have 4 other works" do
+    context "when creators have 3 other works" do
       before {
-        4.times do
+        3.times do
           FactoryBot.create(:work)
           FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
+        end
+      }
+
+      it_behaves_like "return 200 success"
+
+      it "is expected to return 3 related works" do
+        subject
+
+        json_body = JSON.parse(response.body)
+        expect(json_body.length).to eq 3
+
+        assert_response_schema_confirm 200
+      end
+    end
+
+    context "when creators have 4 other works" do
+      before {
+        2.times do
+          FactoryBot.create(:work)
+          FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
+        end
+
+        2.times do
+          FactoryBot.create(:work)
+          FactoryBot.create(:creator_mapping, :author, user: user_2, work: Work.last)
         end
       }
 
@@ -63,36 +88,11 @@ RSpec.describe "Api::V1::Works::CreatorsOtherWorks", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 5 related works" do
+      it "is expected to return 4 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 5
-
-        assert_response_schema_confirm 200
-      end
-    end
-
-    context "when creators have 6 other works" do
-      before {
-        3.times do
-          FactoryBot.create(:work)
-          FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
-        end
-
-        3.times do
-          FactoryBot.create(:work)
-          FactoryBot.create(:creator_mapping, :author, user: user_2, work: Work.last)
-        end
-      }
-
-      it_behaves_like "return 200 success"
-
-      it "is expected to return 5 related works" do
-        subject
-
-        json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 5
+        expect(json_body.length).to eq 4
 
         assert_response_schema_confirm 200
       end

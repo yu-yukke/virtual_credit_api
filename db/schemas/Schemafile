@@ -28,6 +28,9 @@ require 'categories.schema'
 # 問い合わせ
 require 'inquiries.schema'
 
+# Link in bio
+require 'link_in_bios.schema'
+
 # ============= 管理サイト =============
 # 管理者
 require 'admin_users.schema'

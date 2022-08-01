@@ -36,6 +36,7 @@ RSpec.describe Work, type: :model do
     it { should have_many(:tags) }
     it { should have_many(:asset_mappings) }
     it { should have_many(:assets) }
+    it { should have_many(:link_in_bios) }
   end
 
   describe "validations" do
