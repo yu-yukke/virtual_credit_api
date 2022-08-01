@@ -124,6 +124,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.index ["deleted_at"], name: "index_jobs_on_deleted_at"
   end
 
+  create_table "link_in_bios", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "work_id", null: false
+    t.string "name", null: false
+    t.string "url", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["deleted_at"], name: "index_link_in_bios_on_deleted_at"
+    t.index ["work_id"], name: "index_link_in_bios_on_work_id"
+  end
+
   create_table "notification_details", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "notification_id", null: false
     t.string "subject", limit: 191, null: false

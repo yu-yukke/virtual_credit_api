@@ -40,6 +40,8 @@ class Work < ApplicationRecord
   has_many :asset_mappings, dependent: :destroy
   has_many :assets, through: :asset_mappings
 
+  has_many :link_in_bios, dependent: :destroy
+
   validates :name, presence: true
   validates :description, presence: true
   validates :main_image_url, presence: true
