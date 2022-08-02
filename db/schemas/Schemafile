@@ -33,6 +33,7 @@ require 'link_in_bios.schema'
 
 # ロール
 require 'roles.schema'
+require 'role_mappings.schema'
 
 # ============= 管理サイト =============
 # 管理者

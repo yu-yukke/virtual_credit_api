@@ -19,6 +19,7 @@ require "rails_helper"
 
 RSpec.describe Role, type: :model do
   describe "associations" do
+    it { should have_many(:role_mappings) }
     it { should have_many(:creator_mappings) }
   end
 

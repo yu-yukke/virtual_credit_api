@@ -1,6 +1,6 @@
-index_key  = 'index_creator_mappings_on_'
+index_key  = 'index_role_maps_on_'
 
-create_table 'creator_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+create_table 'role_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
   # =========================================
   # 親
   # =========================================
@@ -14,20 +14,18 @@ create_table 'creator_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4
   # =========================================
   # リレーション
   # =========================================
-  # ユーザーID
-  t.bigint  'user_id',              null: false
-  t.index   'user_id',              name: "#{index_key}user_id"
+  # ロールID
+  t.bigint  'role_id',                          null: false
+  t.index   'role_id',                          name: "#{index_key}role_id"
 
-  # 作品ID
-  t.bigint  'work_id',              null: false
-  t.index   'work_id',              name: "#{index_key}work_id"
+  # クリエイターマッピングID
+  t.bigint  'creator_mapping_id',               null: false
+  t.index   'creator_mapping_id',               name: "#{index_key}creator_mapping_id"
 
   # =========================================
   # カラム
   # =========================================
-  # 登録者真偽
-  t.boolean  'is_author',           null: false,
-                                    default: false
+  # なし
 
   # =========================================
   # 画像
@@ -38,7 +36,7 @@ create_table 'creator_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4
   # 論理削除
   # =========================================
   t.datetime 'deleted_at'
-  t.index    'deleted_at',          name: "#{index_key}deleted_at"
+  t.index    'deleted_at',                      name: "#{index_key}deleted_at"
 
   # =========================================
   # 作成・更新日時

@@ -60,13 +60,11 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "creator_mappings", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "work_id", null: false
-    t.bigint "role_id", null: false
     t.boolean "is_author", default: false, null: false
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_creator_mappings_on_deleted_at"
-    t.index ["role_id"], name: "index_creator_mappings_on_role_id"
     t.index ["user_id"], name: "index_creator_mappings_on_user_id"
     t.index ["work_id"], name: "index_creator_mappings_on_work_id"
   end
@@ -166,6 +164,17 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["deleted_at"], name: "index_release_notes_on_deleted_at"
+  end
+
+  create_table "role_mappings", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
+    t.bigint "role_id", null: false
+    t.bigint "creator_mapping_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["creator_mapping_id"], name: "index_role_maps_on_creator_mapping_id"
+    t.index ["deleted_at"], name: "index_role_maps_on_deleted_at"
+    t.index ["role_id"], name: "index_role_maps_on_role_id"
   end
 
   create_table "roles", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|

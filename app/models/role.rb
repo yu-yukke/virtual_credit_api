@@ -17,7 +17,8 @@
 class Role < ApplicationRecord
   acts_as_paranoid
 
-  has_many :creator_mappings
+  has_many :role_mappings, dependent: :destroy
+  has_many :creator_mappings, through: :role_mappings
 
   validates :name, presence: true, uniqueness: true
 end
