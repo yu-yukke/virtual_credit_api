@@ -6,7 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  work_id    :bigint           not null
-#  name       :string(255)      not null
+#  name       :string(191)      not null
 #  url        :string(255)      not null
 #  deleted_at :datetime
 #  created_at :datetime

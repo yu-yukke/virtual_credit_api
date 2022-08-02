@@ -1,6 +1,6 @@
-index_key  = 'index_creator_mappings_on_'
+index_key  = 'index_roles_on_'
 
-create_table 'creator_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+create_table 'roles', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
   # =========================================
   # 親
   # =========================================
@@ -14,24 +14,14 @@ create_table 'creator_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4
   # =========================================
   # リレーション
   # =========================================
-  # ユーザーID
-  t.bigint  'user_id',              null: false
-  t.index   'user_id',              name: "#{index_key}user_id"
-
-  # 作品ID
-  t.bigint  'work_id',              null: false
-  t.index   'work_id',              name: "#{index_key}work_id"
-
-  # ロール
-  t.bigint  'role_id',              null: false
-  t.index   'role_id',              name: "#{index_key}role_id"
+  # なし
 
   # =========================================
   # カラム
   # =========================================
-  # 登録者真偽
-  t.boolean  'is_author',           null: false,
-                                    default: false
+  # 名前
+  t.string  'name',                 null: false,
+                                    limit: 191
 
   # =========================================
   # 画像

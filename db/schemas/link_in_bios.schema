@@ -22,7 +22,8 @@ create_table 'link_in_bios', id: :bigint, force: :cascade, charset: 'utf8mb4', c
   # カラム
   # =========================================
   # 表示名
-  t.string  'name',                 null: false
+  t.string  'name',                 null: false,
+                                    limit: 191
 
   # URL
   t.string  'url',                  null: false
