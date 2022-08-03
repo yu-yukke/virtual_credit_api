@@ -4,10 +4,7 @@ class Api::V1::Works::CreatorsOtherWorksController < ApplicationController
   def index
     work = Work.find_by id: params[:work_id]
     other_works = work.creators.map do |creator|
-      creator.works.includes(
-        :category, :author, :image_files, :link_in_bios, { creators: :jobs },
-        { tags: :author }, { assets: :author }
-      ).where.not(id: work.id)
+      creator.works.includes(:category).where.not(id: work.id)
     end
     .flatten
     .uniq

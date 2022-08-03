@@ -19,16 +19,20 @@
 #  index_works_on_deleted_at   (deleted_at)
 #
 class WorkSerializer < ApplicationSerializer
-  attributes :id, :name, :description, :main_image_url, :creators, :number_of_favorites
+  attributes :id, :name, :main_image_url
+  attribute :description, if: -> { instance_options[:with_details] }
+  attribute :creators, if: -> { instance_options[:with_details] }
+  attribute :roles, if: -> { instance_options[:with_details] }
+  attribute :creators, if: -> { instance_options[:with_details] }
 
   belongs_to :category, serializer: CategorySerializer
 
-  has_one :author, serializer: AuthorSerializer
+  has_one :author, serializer: AuthorSerializer, if: -> { instance_options[:with_details] }
 
-  has_many :image_files, each_serializer: ImageFileSerializer
-  has_many :tags, each_serializer: TagSerializer
-  has_many :assets, each_serializer: AssetSerializer
-  has_many :link_in_bios, each_serializer: LinkInBioSerializer
+  has_many :image_files, each_serializer: ImageFileSerializer, if: -> { instance_options[:with_details] }
+  has_many :tags, each_serializer: TagSerializer, if: -> { instance_options[:with_details] }
+  has_many :assets, each_serializer: AssetSerializer, if: -> { instance_options[:with_details] }
+  has_many :link_in_bios, each_serializer: LinkInBioSerializer, if: -> { instance_options[:with_details] }
 
   def creators
     ActiveModelSerializers::SerializableResource.new(
@@ -36,7 +40,9 @@ class WorkSerializer < ApplicationSerializer
     )
   end
 
-  def number_of_favorites
-    object.favorites.count
+  def roles
+    ActiveModelSerializers::SerializableResource.new(
+      object.roles, each_serializer: RoleSerializer, work_id: object.id
+    )
   end
 end

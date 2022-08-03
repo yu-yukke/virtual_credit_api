@@ -23,4 +23,7 @@ class CreatorMapping < ApplicationRecord
 
   belongs_to :user
   belongs_to :work
+
+  has_many :role_mappings, dependent: :destroy
+  has_many :roles, through: :role_mappings
 end

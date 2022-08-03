@@ -18,9 +18,10 @@
 #  index_users_on_deleted_at  (deleted_at)
 #
 class UserSerializer < ApplicationSerializer
-  attributes :id, :name, :thumb_image_url, :is_author
+  attributes :id, :name, :thumb_image_url
+  attribute :is_author, if: -> { instance_options[:work_id] }
 
-  has_many :jobs, each_serializer: JobSerializer
+  has_many :jobs, each_serializer: JobSerializer, if: -> { instance_options[:with_jobs] }
 
   def is_author
     object.creator_mappings.find_by(

@@ -1,12 +1,10 @@
-index_key  = 'index_link_in_bios_on_'
+index_key  = 'index_role_maps_on_'
 
-create_table 'link_in_bios', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+create_table 'role_mappings', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
   # =========================================
   # 親
   # =========================================
-  # 作品ID
-  t.bigint  'work_id',              null: false
-  t.index   'work_id',              name: "#{index_key}work_id"
+  # なし
 
   # =========================================
   # PRIMARY KEY
@@ -16,17 +14,18 @@ create_table 'link_in_bios', id: :bigint, force: :cascade, charset: 'utf8mb4', c
   # =========================================
   # リレーション
   # =========================================
-  # なし
+  # ロールID
+  t.bigint  'role_id',                          null: false
+  t.index   'role_id',                          name: "#{index_key}role_id"
+
+  # クリエイターマッピングID
+  t.bigint  'creator_mapping_id',               null: false
+  t.index   'creator_mapping_id',               name: "#{index_key}creator_mapping_id"
 
   # =========================================
   # カラム
   # =========================================
-  # 表示名
-  t.string  'name',                 null: false,
-                                    limit: 191
-
-  # URL
-  t.string  'url',                  null: false
+  # なし
 
   # =========================================
   # 画像
@@ -37,7 +36,7 @@ create_table 'link_in_bios', id: :bigint, force: :cascade, charset: 'utf8mb4', c
   # 論理削除
   # =========================================
   t.datetime 'deleted_at'
-  t.index    'deleted_at',          name: "#{index_key}deleted_at"
+  t.index    'deleted_at',                      name: "#{index_key}deleted_at"
 
   # =========================================
   # 作成・更新日時
