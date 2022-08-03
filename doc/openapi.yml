@@ -721,11 +721,7 @@ components:
           type: integer
         sequence:
           type: integer
-        file_type:
-          type: string
         image_url:
-          type: string
-        video_id:
           type: string
         created_at:
           type: string
@@ -737,7 +733,7 @@ components:
       required:
         - id
         - sequence
-        - file_type
+        - image_url
         - created_at
         - updated_at
         - deleted_at
@@ -866,6 +862,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkInBio'
+        video:
+          $ref: '#/components/schemas/Video'
         created_at:
           type: string
         updated_at:
@@ -917,6 +915,7 @@ components:
       x-stoplight:
         id: 10538pjgpuh3e
       type: object
+      description: 作品Link in bio
       properties:
         id:
           type: integer
@@ -930,6 +929,7 @@ components:
           type: string
         deleted_at:
           type: string
+          nullable: true
       required:
         - id
         - name
@@ -937,7 +937,6 @@ components:
         - created_at
         - updated_at
         - deleted_at
-      description: 作品Link in bio
     Role:
       title: Role
       x-stoplight:
@@ -946,7 +945,7 @@ components:
       description: ロール情報
       properties:
         id:
-          type: string
+          type: integer
         name:
           type: string
         creators:
@@ -959,9 +958,34 @@ components:
           type: string
         deleted_at:
           type: string
+          nullable: true
       required:
         - id
         - name
+    Video:
+      title: Video
+      x-stoplight:
+        id: vj9ofa39xjrvt
+      type: object
+      description: 作品ビデオ情報
+      properties:
+        id:
+          type: integer
+        video_url:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+          nullable: true
+      required:
+        - id
+        - video_url
+        - created_at
+        - updated_at
+        - deleted_at
   parameters: {}
   examples: {}
   responses: {}

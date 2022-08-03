@@ -28,6 +28,7 @@ class WorkSerializer < ApplicationSerializer
   belongs_to :category, serializer: CategorySerializer
 
   has_one :author, serializer: AuthorSerializer, if: -> { instance_options[:with_details] }
+  has_one :video, serializer: VideoSerializer, if: -> { instance_options[:with_details] }
 
   has_many :image_files, each_serializer: ImageFileSerializer, if: -> { instance_options[:with_details] }
   has_many :tags, each_serializer: TagSerializer, if: -> { instance_options[:with_details] }

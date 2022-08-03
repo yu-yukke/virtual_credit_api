@@ -27,6 +27,8 @@ FactoryBot.define do
     association :category
 
     after(:create) do |work|
+      FactoryBot.create(:video, work: work)
+
       FactoryBot.create_list(:image_file, 5, work: work)
       FactoryBot.create_list(:tag_mapping, 5, work: work)
       FactoryBot.create_list(:asset_mapping, 5, work: work)
