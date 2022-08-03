@@ -61,7 +61,6 @@ RSpec.describe "Api::V1::Works", type: :request do
         json_body = JSON.parse(response.body)
         expect(json_body["name"]).to eq work.name
         expect(json_body["description"]).to eq work.description
-        expect(json_body["number_of_favorites"]).to eq work.favorites.count
 
         assert_response_schema_confirm 200
       end

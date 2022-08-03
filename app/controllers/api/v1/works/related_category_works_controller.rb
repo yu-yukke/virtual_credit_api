@@ -8,7 +8,7 @@ class Api::V1::Works::RelatedCategoryWorksController < ApplicationController
       .sort_by { |work| work.favorites.count }
       .uniq
       .take(4)
-      # TODO: とりあえず4件にしてるけど増やす
+    # TODO: とりあえず4件にしてるけど増やす
 
     if related_works.empty?
       render json: [], status: 200

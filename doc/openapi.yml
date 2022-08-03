@@ -709,7 +709,6 @@ components:
         - id
         - name
         - thumb_image_url
-        - jobs
         - created_at
         - updated_at
         - deleted_at
