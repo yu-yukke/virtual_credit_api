@@ -20,4 +20,6 @@ class Video < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :work
+
+  validates :video_url, presence: true
 end
