@@ -20,7 +20,7 @@
 #
 require "rails_helper"
 
-RSpec.describe Work, type: :model do
+RSpec.describe Video, type: :model do
   describe "associations" do
     it { should belong_to(:work) }
   end
