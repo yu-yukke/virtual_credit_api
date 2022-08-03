@@ -709,7 +709,6 @@ components:
         - id
         - name
         - thumb_image_url
-        - is_author
         - jobs
         - created_at
         - updated_at
@@ -840,8 +839,6 @@ components:
           type: string
         main_image_url:
           type: string
-        number_of_favorites:
-          type: integer
         category:
           $ref: '#/components/schemas/Category'
         image_files:
@@ -850,10 +847,6 @@ components:
             $ref: '#/components/schemas/ImageFile'
         author:
           $ref: '#/components/schemas/Author'
-        creators:
-          type: array
-          items:
-            $ref: '#/components/schemas/Creator'
         tags:
           type: array
           items:
@@ -862,6 +855,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Asset'
+        creators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Creator'
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
         link_in_bios:
           type: array
           items:
@@ -876,12 +877,8 @@ components:
       required:
         - id
         - name
-        - description
         - main_image_url
-        - number_of_favorites
         - category
-        - image_files
-        - creators
         - created_at
         - updated_at
         - deleted_at
@@ -942,6 +939,30 @@ components:
         - updated_at
         - deleted_at
       description: 作品Link in bio
+    Role:
+      title: Role
+      x-stoplight:
+        id: 88ob97hzje61o
+      type: object
+      description: ロール情報
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        creators:
+          type: array
+          items:
+            $ref: '#/components/schemas/Creator'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        deleted_at:
+          type: string
+      required:
+        - id
+        - name
   parameters: {}
   examples: {}
   responses: {}

@@ -45,4 +45,8 @@ class Work < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :main_image_url, presence: true
+
+  def roles
+    creator_mappings.includes(:roles).map { |map| map.roles }.flatten.uniq
+  end
 end
