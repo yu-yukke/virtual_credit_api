@@ -83,9 +83,7 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "image_files", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "work_id", null: false
     t.integer "sequence", null: false
-    t.integer "file_type", default: 0, null: false
     t.string "image_url"
-    t.string "video_url"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

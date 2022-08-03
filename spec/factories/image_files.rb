@@ -7,9 +7,7 @@
 #  id         :bigint           not null, primary key
 #  work_id    :bigint           not null
 #  sequence   :integer          not null
-#  file_type  :integer          default("image"), not null
 #  image_url  :string(255)
-#  video_url  :string(255)
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
