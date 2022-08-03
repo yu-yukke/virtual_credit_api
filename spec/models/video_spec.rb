@@ -18,20 +18,14 @@
 #  index_works_on_category_id  (category_id)
 #  index_works_on_deleted_at   (deleted_at)
 #
-FactoryBot.define do
-  factory :work do
-    name { Faker::Name.unique.name }
-    description { Faker::Lorem.paragraph }
-    main_image_url { Faker::Internet.url }
+require "rails_helper"
 
-    association :category
+RSpec.describe Video, type: :model do
+  describe "associations" do
+    it { should belong_to(:work) }
+  end
 
-    after(:create) do |work|
-      FactoryBot.create(:video, work: work)
-
-      FactoryBot.create_list(:image_file, 5, work: work)
-      FactoryBot.create_list(:tag_mapping, 5, work: work)
-      FactoryBot.create_list(:asset_mapping, 5, work: work)
-    end
+  describe "validations" do
+    it { should validate_presence_of(:video_url) }
   end
 end

@@ -10,6 +10,7 @@ require 'job_mappings.schema'
 
 # 作品
 require 'works.schema'
+require 'videos.schema'
 require 'image_files.schema'
 require 'favorites.schema'
 require 'creator_mappings.schema'

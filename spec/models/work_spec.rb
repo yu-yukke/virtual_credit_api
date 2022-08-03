@@ -26,6 +26,7 @@ RSpec.describe Work, type: :model do
 
     it { should have_one(:author_mapping) }
     it { should have_one(:author) }
+    it { should have_one(:video) }
 
     it { should have_many(:image_files) }
     it { should have_many(:favorites) }

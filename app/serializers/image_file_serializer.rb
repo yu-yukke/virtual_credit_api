@@ -7,9 +7,7 @@
 #  id         :bigint           not null, primary key
 #  work_id    :bigint           not null
 #  sequence   :integer          not null
-#  file_type  :integer          default("image"), not null
 #  image_url  :string(255)
-#  video_url  :string(255)
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
@@ -20,5 +18,5 @@
 #  index_image_files_on_work_id     (work_id)
 #
 class ImageFileSerializer < ApplicationSerializer
-  attributes :id, :sequence, :file_type, :image_url, :video_url
+  attributes :id, :sequence, :image_url
 end

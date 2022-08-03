@@ -1,6 +1,6 @@
-index_key  = 'index_image_files_on_'
+index_key  = 'index_videos_on_'
 
-create_table 'image_files', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
+create_table 'videos', id: :bigint, force: :cascade, charset: 'utf8mb4', collation: 'utf8mb4_bin' do |t|
   # =========================================
   # 親
   # =========================================
@@ -21,14 +21,13 @@ create_table 'image_files', id: :bigint, force: :cascade, charset: 'utf8mb4', co
   # =========================================
   # カラム
   # =========================================
-  # 表示順
-  t.integer  'sequence',            null: false
+  # なし
 
   # =========================================
   # 画像
   # =========================================
-  # 画像URL
-  t.string  'image_url',            null: true
+  # 動画URL
+  t.string  'video_url',            null: true
 
   # =========================================
   # 論理削除
