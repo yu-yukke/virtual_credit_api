@@ -26,6 +26,8 @@ class Work < ApplicationRecord
   has_one :author_mapping, -> { where(is_author: true) }, class_name: "CreatorMapping"
   has_one :author, through: :author_mapping, source: :user
 
+  has_one :video, dependent: :destroy
+
   has_many :image_files, dependent: :destroy
 
   has_many :favorites, dependent: :destroy

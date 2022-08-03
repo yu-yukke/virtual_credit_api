@@ -18,5 +18,5 @@
 #  index_image_files_on_work_id     (work_id)
 #
 class ImageFileSerializer < ApplicationSerializer
-  attributes :id, :sequence, :file_type, :image_url, :video_url
+  attributes :id, :sequence, :image_url
 end

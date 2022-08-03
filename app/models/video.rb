@@ -2,22 +2,21 @@
 
 # == Schema Information
 #
-# Table name: image_files
+# Table name: videos
 #
 #  id         :bigint           not null, primary key
 #  work_id    :bigint           not null
-#  sequence   :integer          not null
-#  image_url  :string(255)
+#  video_url  :string(255)
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
 #
 # Indexes
 #
-#  index_image_files_on_deleted_at  (deleted_at)
-#  index_image_files_on_work_id     (work_id)
+#  index_videos_on_deleted_at  (deleted_at)
+#  index_videos_on_work_id     (work_id)
 #
-class ImageFile < ApplicationRecord
+class Video < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :work
