@@ -6,7 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  work_id    :bigint           not null
-#  video_url  :string(255)
+#  embed_code :text(65535)
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
@@ -17,5 +17,5 @@
 #  index_videos_on_work_id     (work_id)
 #
 class VideoSerializer < ApplicationSerializer
-  attributes :id, :video_url
+  attributes :id, :embed_code
 end

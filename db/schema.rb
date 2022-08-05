@@ -264,7 +264,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "videos", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "work_id", null: false
-    t.string "video_url"
+    t.text "embed_code"
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"

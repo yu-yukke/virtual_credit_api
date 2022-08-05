@@ -6,7 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  work_id    :bigint           not null
-#  video_url  :string(255)
+#  embed_code :text(65535)
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
@@ -21,5 +21,5 @@ class Video < ApplicationRecord
 
   belongs_to :work
 
-  validates :video_url, presence: true
+  validates :embed_code, presence: true
 end

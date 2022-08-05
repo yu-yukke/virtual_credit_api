@@ -6,7 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  work_id    :bigint           not null
-#  video_url  :string(255)
+#  embed_code :text(65535)
 #  deleted_at :datetime
 #  created_at :datetime
 #  updated_at :datetime
@@ -19,7 +19,7 @@
 
 FactoryBot.define do
   factory :video do
-    video_url { Faker::Internet.url }
+    embed_code { Faker::Internet.url }
 
     association :work
   end

@@ -971,7 +971,7 @@ components:
       properties:
         id:
           type: integer
-        video_url:
+        embed_code:
           type: string
         created_at:
           type: string
@@ -982,7 +982,7 @@ components:
           nullable: true
       required:
         - id
-        - video_url
+        - embed_code
         - created_at
         - updated_at
         - deleted_at

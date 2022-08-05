@@ -26,8 +26,8 @@ create_table 'videos', id: :bigint, force: :cascade, charset: 'utf8mb4', collati
   # =========================================
   # 画像
   # =========================================
-  # 動画URL
-  t.string  'video_url',            null: true
+  # 埋め込みコード
+  t.text  'embed_code',             null: true
 
   # =========================================
   # 論理削除
