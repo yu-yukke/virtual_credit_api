@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
       # リリースノート
       resources :release_notes
+
+      # タグ
+      resources :tags, only: %i(index)
     end
   end
 end
