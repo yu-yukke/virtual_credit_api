@@ -16,12 +16,13 @@
 #  index_tags_on_deleted_at  (deleted_at)
 #  index_tags_on_user_id     (user_id)
 #
-class TagSerializer < ApplicationSerializer
-  attributes :id, :name, :number_of_works
+require "rails_helper"
 
-  belongs_to :author, serializer: AuthorSerializer, if: -> { instance_options[:with_author] }
+RSpec.describe Tag, type: :model do
+  describe "associations" do
+    it { should belong_to(:author) }
 
-  def number_of_works
-    object.works.count
+    it { should have_many(:tag_mappings) }
+    it { should have_many(:works) }
   end
 end

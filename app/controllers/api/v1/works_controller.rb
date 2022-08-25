@@ -26,7 +26,7 @@ class Api::V1::WorksController < ApplicationController
     def find_work
       @work = Work.includes(
         :category, :image_files, :link_in_bios, :creators,
-        [tags: :author], [assets: :author]
+        :tags, [assets: :author]
       ).find params[:id]
     end
 end
