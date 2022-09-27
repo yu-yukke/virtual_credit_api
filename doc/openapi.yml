@@ -12,6 +12,7 @@ tags:
   - name: Work
   - name: ReleaseNote
   - name: Tag
+  - name: Creator
 paths:
   /jobs:
     get:
@@ -617,6 +618,22 @@ paths:
                   $ref: '#/components/schemas/Tag'
       operationId: getTags
       description: タグ一覧を取得
+  /creators:
+    get:
+      summary: クリエイター一覧
+      tags:
+        - Creator
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Creator'
+      operationId: getCreators
+      description: クリエイター一覧を取得
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1
@@ -707,14 +724,24 @@ components:
           type: integer
         name:
           type: string
+        main_image_url:
+          type: string
         thumb_image_url:
+          type: string
+        description:
           type: string
         is_author:
           type: boolean
+        works:
+          type: array
+          items:
+            $ref: '#/components/schemas/Work'
         jobs:
           type: array
           items:
             $ref: '#/components/schemas/Job'
+        social:
+          $ref: '#/components/schemas/Social'
         created_at:
           type: string
         updated_at:
@@ -792,12 +819,16 @@ components:
           type: string
         twitter_id:
           type: string
+          nullable: true
         youtube_url:
           type: string
+          nullable: true
         instagram_url:
           type: string
+          nullable: true
         facebook_url:
           type: string
+          nullable: true
         created_at:
           type: string
         updated_at:
@@ -807,6 +838,10 @@ components:
           nullable: true
       required:
         - id
+        - twitter_id
+        - youtube_url
+        - instagram_url
+        - facebook_url
         - created_at
         - updated_at
         - deleted_at

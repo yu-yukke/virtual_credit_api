@@ -20,8 +20,13 @@
 class UserSerializer < ApplicationSerializer
   attributes :id, :name, :thumb_image_url
   attribute :is_author, if: -> { instance_options[:work_id] }
+  attribute :main_image_url, if: -> { instance_options[:with_details] }
+  attribute :description, if: -> { instance_options[:with_details] }
 
-  has_many :jobs, each_serializer: JobSerializer, if: -> { instance_options[:with_jobs] }
+  has_one :social, serializer: SocialSerializer, if: -> { instance_options[:with_details] }
+
+  has_many :works, each_serializer: WorkSerializer, if: -> { instance_options[:with_relations] }
+  has_many :jobs, each_serializer: JobSerializer, if: -> { instance_options[:with_relations] }
 
   def is_author
     object.creator_mappings.find_by(
