@@ -31,7 +31,7 @@ RSpec.describe "Api::V1::Works", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return all jobs" do
+      it "is expected to return all works" do
         subject
 
         json_body = JSON.parse(response.body)

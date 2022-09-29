@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       # カテゴリ
       resources :categories
 
+      # クリエイター
+      resources :creators
+
       # 作品
       resources :works do
         resources :related_category_works, only: %i(index), module: :works

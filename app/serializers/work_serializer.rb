@@ -23,7 +23,6 @@ class WorkSerializer < ApplicationSerializer
   attribute :description, if: -> { instance_options[:with_details] }
   attribute :creators, if: -> { instance_options[:with_details] }
   attribute :roles, if: -> { instance_options[:with_details] }
-  attribute :creators, if: -> { instance_options[:with_details] }
 
   belongs_to :category, serializer: CategorySerializer
 
