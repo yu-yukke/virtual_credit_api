@@ -2,7 +2,7 @@
 
 class Api::V1::CreatorsController < ApplicationController
   def index
-    creators = User.all.includes(:jobs, [works: :category])
+    creators = User.all.includes(:jobs, [works: [:category, :image_files]])
 
     render(
       json: creators,

@@ -732,7 +732,7 @@ components:
           type: string
         is_author:
           type: boolean
-        works:
+        work_with_images:
           type: array
           items:
             $ref: '#/components/schemas/Work'

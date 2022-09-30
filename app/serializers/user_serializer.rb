@@ -22,15 +22,23 @@ class UserSerializer < ApplicationSerializer
   attribute :is_author, if: -> { instance_options[:work_id] }
   attribute :main_image_url, if: -> { instance_options[:with_details] }
   attribute :description, if: -> { instance_options[:with_details] }
+  attribute :work_with_images, if: -> { instance_options[:with_relations] }
 
   has_one :social, serializer: SocialSerializer, if: -> { instance_options[:with_details] }
 
-  has_many :works, each_serializer: WorkSerializer, if: -> { instance_options[:with_relations] }
   has_many :jobs, each_serializer: JobSerializer, if: -> { instance_options[:with_relations] }
 
   def is_author
     object.creator_mappings.find_by(
       work_id: instance_options[:work_id]
     ).is_author
+  end
+
+  def work_with_images
+    ActiveModelSerializers::SerializableResource.new(
+      object.works,
+      each_serializer: WorkSerializer,
+      with_images: true
+    )
   end
 end

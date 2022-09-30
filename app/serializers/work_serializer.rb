@@ -29,7 +29,7 @@ class WorkSerializer < ApplicationSerializer
   has_one :author, serializer: AuthorSerializer, if: -> { instance_options[:with_details] }
   has_one :video, serializer: VideoSerializer, if: -> { instance_options[:with_details] }
 
-  has_many :image_files, each_serializer: ImageFileSerializer, if: -> { instance_options[:with_details] }
+  has_many :image_files, each_serializer: ImageFileSerializer, if: -> { instance_options[:with_details] || instance_options[:with_images] }
   has_many :tags, each_serializer: TagSerializer, if: -> { instance_options[:with_details] }
   has_many :assets, each_serializer: AssetSerializer, if: -> { instance_options[:with_details] }
   has_many :link_in_bios, each_serializer: LinkInBioSerializer, if: -> { instance_options[:with_details] }
