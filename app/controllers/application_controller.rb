@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :devise_controller?
 
   def set_csrf_token
-    cookies["CSRF-TOKEN"] = {
-      domain: "http://localhost:4000",
-      value: form_authenticity_token
-    }
+    response.set_header(
+      'X-CSRF-Token',
+      form_authenticity_token
+    )
   end
 
   protected

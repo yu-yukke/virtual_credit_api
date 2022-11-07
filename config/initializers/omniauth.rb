@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# 開発用にGET許可
-OmniAuth.config.allowed_request_methods = [:post, :get]
-OmniAuth.config.logger = Rails.logger
+OmniAuth.config.allowed_request_methods = [:get, :post]
+OmniAuth.config.silence_get_warning = true
+OmniAuth.config.logger = Rails.logger if Rails.env.development?
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter,

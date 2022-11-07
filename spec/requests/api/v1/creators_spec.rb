@@ -19,10 +19,12 @@ RSpec.describe "Api::V1::Creators", type: :request do
       end
     end
 
-    context "when 10 creators exist" do
+    context "when 10 creators with works exist" do
       before {
         10.times do |n|
           FactoryBot.create(:user)
+          FactoryBot.create(:work)
+          FactoryBot.create(:creator_mapping, :author, user: User.last, work: Work.last)
         end
       }
 

@@ -33,9 +33,6 @@ create_table 'user_authentications', id: :bigint, force: :cascade, charset: 'utf
   t.index     %w[provider uid],     name: "#{index_key}provider_uid_unique",
                                     unique: true
 
-  # rememberable
-  t.datetime  'remember_created_at'
-
   # trackable
   t.integer   'sign_in_count',      null: false,
                                     default: 0
