@@ -12,10 +12,8 @@ class Api::V1::UserAuthenticationsController < ApplicationController
       )
     else
       render(
-        json: {
-          errors: 'User Not Found',
-        },
-        status: 401
+        json: {},
+        status: 200
       )
     end
   end
