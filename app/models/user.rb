@@ -35,4 +35,8 @@ class User < ApplicationRecord
   has_many :tags
   has_many :assets
   has_many :inquiries, dependent: :destroy
+
+  scope :has_works, -> do
+    joins(:works).where.not(works: { id: nil })
+  end
 end

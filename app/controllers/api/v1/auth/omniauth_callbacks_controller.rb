@@ -18,13 +18,12 @@ class Api::V1::Auth::OmniauthCallbacksController < DeviseTokenAuth::OmniauthCall
 
   private
     def callback_from(provider)
-      @user_authentication = UserAuthentication.find_for_oauth(auth_hash)
+      UserAuthentication.find_or_create_for_oauth(auth_hash)
+    end
 
-      if @user_authentication.persisted?
-        sign_in_and_redirect @user_authentication, event: :authentication
-      else
-        session["devise.#{provider}_data"] = request.env["omniauth.auth"]
-        redirect_to new_user_registration_path, alert: @user
-      end
+  protected
+    def handle_new_resource
+      @oauth_registration = true
+      # don't set password
     end
 end

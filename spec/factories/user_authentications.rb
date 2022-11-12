@@ -4,20 +4,19 @@
 #
 # Table name: user_authentications
 #
-#  id                  :bigint           not null, primary key
-#  user_id             :bigint           not null
-#  provider            :string(191)      default("email"), not null
-#  uid                 :string(191)      default(""), not null
-#  remember_created_at :datetime
-#  sign_in_count       :integer          default(0), not null
-#  current_sign_in_at  :datetime
-#  last_sign_in_at     :datetime
-#  current_sign_in_ip  :string(255)
-#  last_sign_in_ip     :string(255)
-#  tokens              :text(65535)
-#  deleted_at          :datetime
-#  created_at          :datetime
-#  updated_at          :datetime
+#  id                 :bigint           not null, primary key
+#  user_id            :bigint           not null
+#  provider           :string(191)      default("email"), not null
+#  uid                :string(191)      default(""), not null
+#  sign_in_count      :integer          default(0), not null
+#  current_sign_in_at :datetime
+#  last_sign_in_at    :datetime
+#  current_sign_in_ip :string(255)
+#  last_sign_in_ip    :string(255)
+#  tokens             :text(65535)
+#  deleted_at         :datetime
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 # Indexes
 #

@@ -23,8 +23,7 @@ create_table 'socials', id: :bigint, force: :cascade, charset: 'utf8mb4', collat
   # カラム
   # =========================================
   # twitter
-  # TODO: auth次第でnull: falseでいいかも
-  t.string  'twitter_id',           null: true,
+  t.string  'twitter_url',          null: false,
                                     limit: 191
 
   # youtube

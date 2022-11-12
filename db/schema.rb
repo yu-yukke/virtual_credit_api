@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "socials", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "twitter_id", limit: 191
+    t.string "twitter_url", limit: 191, null: false
     t.string "youtube_url", limit: 191
     t.string "instagram_url", limit: 191
     t.string "facebook_url", limit: 191
@@ -221,7 +221,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.bigint "user_id", null: false
     t.string "provider", limit: 191, default: "email", null: false
     t.string "uid", limit: 191, default: "", null: false
-    t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"

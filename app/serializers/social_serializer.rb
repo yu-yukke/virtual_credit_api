@@ -6,7 +6,7 @@
 #
 #  id            :bigint           not null, primary key
 #  user_id       :bigint           not null
-#  twitter_id    :string(191)
+#  twitter_url   :string(191)      not null
 #  youtube_url   :string(191)
 #  instagram_url :string(191)
 #  facebook_url  :string(191)

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def set_csrf_token
     cookies["CSRF-TOKEN"] = {
-      domain: "http://localhost:4000",
+      domain: "http://127.0.0.1:3000",
       value: form_authenticity_token
     }
   end
