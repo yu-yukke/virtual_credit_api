@@ -37,21 +37,21 @@ class UserAuthentication < ApplicationRecord
   class << self
     def find_or_create_for_oauth(auth)
       user_auth = UserAuthentication.find_or_initialize_by(
-        uid: auth['uid'],
-        provider: auth['provider']
+        uid: auth["uid"],
+        provider: auth["provider"]
       )
 
       if !user_auth.persisted?
         user = User.new(
-          name: auth['info']['name'],
-          description: auth['info']['description'],
-          thumb_image_url: auth['info']['image']
+          name: auth["info"]["name"],
+          description: auth["info"]["description"],
+          thumb_image_url: auth["info"]["image"]
         )
 
         user_auth.user = user
 
         user.build_social(
-          twitter_url: auth['info']['urls']['Twitter']
+          twitter_url: auth["info"]["urls"]["Twitter"]
         )
 
         user.save!

@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       # 認証
       resources :users, only: %i() do
         collection do
-          get :me, to: 'user_authentications#index'
+          get :me, to: "user_authentications#index"
         end
       end
     end
