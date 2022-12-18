@@ -28,9 +28,9 @@ RSpec.describe "Api::V1::Works::CreatorsOtherWorks", type: :request do
       end
     end
 
-    context "when creators have 3 other works" do
+    context "when creators have 11 other works" do
       before {
-        3.times do
+        11.times do
           FactoryBot.create(:work)
           FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
         end
@@ -38,24 +38,24 @@ RSpec.describe "Api::V1::Works::CreatorsOtherWorks", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 3 related works" do
+      it "is expected to return 11 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 3
+        expect(json_body.length).to eq 11
 
         assert_response_schema_confirm 200
       end
     end
 
-    context "when creators have 4 other works" do
+    context "when creators have 12 other works" do
       before {
-        2.times do
+        6.times do
           FactoryBot.create(:work)
           FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
         end
 
-        2.times do
+        6.times do
           FactoryBot.create(:work)
           FactoryBot.create(:creator_mapping, :author, user: user_2, work: Work.last)
         end
@@ -63,24 +63,24 @@ RSpec.describe "Api::V1::Works::CreatorsOtherWorks", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 4 related works" do
+      it "is expected to return 12 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 4
+        expect(json_body.length).to eq 12
 
         assert_response_schema_confirm 200
       end
     end
 
-    context "when creators have 5 other works" do
+    context "when creators have 13 other works" do
       before {
-        2.times do
+        6.times do
           FactoryBot.create(:work)
           FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
         end
 
-        3.times do
+        7.times do
           FactoryBot.create(:work)
           FactoryBot.create(:creator_mapping, :author, user: user_2, work: Work.last)
         end
@@ -88,11 +88,11 @@ RSpec.describe "Api::V1::Works::CreatorsOtherWorks", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 4 related works" do
+      it "is expected to return 12 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 4
+        expect(json_body.length).to eq 12
 
         assert_response_schema_confirm 200
       end
