@@ -668,6 +668,37 @@ paths:
           name: uid
           description: ユーザーID
           required: true
+  '/creators/{user_account_id}':
+    parameters:
+      - schema:
+          type: integer
+        name: user_account_id
+        in: path
+        required: true
+    get:
+      summary: クリエイター情報取得
+      tags:
+        - Creator
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Creator'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                  - error
+      operationId: getCreator
+      description: クリエイター情報を取得
 servers:
   - url: 'http://localhost:4000/api/v1'
     description: ローカル環境/v1
