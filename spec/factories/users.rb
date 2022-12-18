@@ -20,7 +20,7 @@
 
 FactoryBot.define do
   factory :user do
-    name { Faker::Name.name }
+    name { Faker::Name.unique.name }
     description { Faker::Lorem.paragraph }
     main_image_url { Faker::Internet.url }
     thumb_image_url { Faker::Internet.url }
@@ -28,6 +28,8 @@ FactoryBot.define do
 
   after(:create) do |user|
     if user.class.name == "User"
+      FactoryBot.create(:social, user: user)
+
       parent = Job.where(ancestry: nil).first || FactoryBot.create(:job)
       child = Job.where.not(ancestry: nil).first || FactoryBot.create(:job, ancestry: parent.id.to_s)
       FactoryBot.create(:job_mapping, user: user, job: child)
