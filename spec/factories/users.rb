@@ -20,7 +20,7 @@
 
 FactoryBot.define do
   factory :user do
-    name { Faker::Name.name }
+    name { Faker::Name.unique.name }
     description { Faker::Lorem.paragraph }
     main_image_url { Faker::Internet.url }
     thumb_image_url { Faker::Internet.url }

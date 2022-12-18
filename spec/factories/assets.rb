@@ -21,7 +21,7 @@
 
 FactoryBot.define do
   factory :asset do
-    name { Faker::Name.name }
+    name { Faker::Name.unique.name }
     url { Faker::Internet.url }
     image_url { Faker::Internet.url }
 
