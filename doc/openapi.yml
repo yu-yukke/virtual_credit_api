@@ -881,7 +881,7 @@ components:
       description: ユーザーSNS情報
       properties:
         id:
-          type: string
+          type: integer
         twitter_url:
           type: string
         youtube_url:
