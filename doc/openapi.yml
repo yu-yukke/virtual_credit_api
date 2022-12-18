@@ -882,9 +882,8 @@ components:
       properties:
         id:
           type: string
-        twitter_id:
+        twitter_url:
           type: string
-          nullable: true
         youtube_url:
           type: string
           nullable: true
@@ -903,7 +902,7 @@ components:
           nullable: true
       required:
         - id
-        - twitter_id
+        - twitter_url
         - youtube_url
         - instagram_url
         - facebook_url

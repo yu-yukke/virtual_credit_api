@@ -20,5 +20,5 @@
 #  index_socials_on_user_id     (user_id) UNIQUE
 #
 class SocialSerializer < ApplicationSerializer
-  attributes :id, :twitter_id, :youtube_url, :instagram_url, :facebook_url
+  attributes :id, :twitter_url, :youtube_url, :instagram_url, :facebook_url
 end
