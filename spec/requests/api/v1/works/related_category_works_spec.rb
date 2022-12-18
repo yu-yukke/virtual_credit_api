@@ -48,9 +48,9 @@ RSpec.describe "Api::V1::Works::RelatedCategoryWorks", type: :request do
       end
     end
 
-    context "when 3 related works exist" do
+    context "when 11 related works exist" do
       before {
-        3.times do
+        11.times do
           FactoryBot.create(:work, category: category)
           FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
         end
@@ -58,19 +58,19 @@ RSpec.describe "Api::V1::Works::RelatedCategoryWorks", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 3 related works" do
+      it "is expected to return 11 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 3
+        expect(json_body.length).to eq 11
 
         assert_response_schema_confirm 200
       end
     end
 
-    context "when 4 related works exist" do
+    context "when 12 related works exist" do
       before {
-        4.times do
+        12.times do
           FactoryBot.create(:work, category: category)
           FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
         end
@@ -78,19 +78,19 @@ RSpec.describe "Api::V1::Works::RelatedCategoryWorks", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 4 related works" do
+      it "is expected to return 12 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 4
+        expect(json_body.length).to eq 12
 
         assert_response_schema_confirm 200
       end
     end
 
-    context "when 5 related works exist" do
+    context "when 13 related works exist" do
       before {
-        5.times do
+        13.times do
           FactoryBot.create(:work, category: category)
           FactoryBot.create(:creator_mapping, :author, user: user, work: Work.last)
         end
@@ -98,11 +98,11 @@ RSpec.describe "Api::V1::Works::RelatedCategoryWorks", type: :request do
 
       it_behaves_like "return 200 success"
 
-      it "is expected to return 4 related works" do
+      it "is expected to return 12 related works" do
         subject
 
         json_body = JSON.parse(response.body)
-        expect(json_body.length).to eq 4
+        expect(json_body.length).to eq 12
 
         assert_response_schema_confirm 200
       end
