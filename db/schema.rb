@@ -252,7 +252,7 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_bin", force: :cascade do |t|
     t.string "name", limit: 191, null: false
-    t.string "description", limit: 191
+    t.text "description"
     t.string "main_image_url"
     t.string "thumb_image_url"
     t.datetime "deleted_at"

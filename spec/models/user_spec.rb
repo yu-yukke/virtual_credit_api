@@ -6,7 +6,7 @@
 #
 #  id              :bigint           not null, primary key
 #  name            :string(191)      not null
-#  description     :string(191)
+#  description     :text(65535)
 #  main_image_url  :string(255)
 #  thumb_image_url :string(255)
 #  deleted_at      :datetime

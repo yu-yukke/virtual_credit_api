@@ -23,8 +23,7 @@ create_table 'users', id: :bigint, force: :cascade, charset: 'utf8mb4', collatio
                                   limit: 191
 
   # 概要
-  t.string  'description',        null: true,
-                                  limit: 191
+  t.text    'description',        null: true
 
   # =========================================
   # 画像
